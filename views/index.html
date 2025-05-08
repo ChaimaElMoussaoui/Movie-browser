@@ -1,41 +1,41 @@
 <!DOCTYPE html>
 <html lang="nl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mooflix</title>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
-    <header class="navbar">
-        <div class="logo">Mooflix</div>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Genres</a></li>
-                <li><a href="#">Plans</a></li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
-        <div class="search-bar">
-            <input type="text" placeholder="Search">
-            <button>Search</button>
-        </div>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <h1 class="logo">🎬 CineScope</h1>
+        <ul class="nav-links">
+          <li><a href="login.html">Login</a></li>
+          <li><a href="favorites.html">Favorieten</a></li>
+          <li><a href="#" id="toggle-dark">Dark Mode</a></li>
+        </ul>
+      </nav>
     </header>
+
+    <section class="search-section">
+      <form id="search-form">
+        <input type="text" id="search-input" placeholder="Zoek naar films..." />
+        <button type="submit">Zoek</button>
+      </form>
+    </section>
+
     <main>
-        <section class="hero">
-            <div class="hero-content">
-                <h1>Latest Movie Trailer</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis consequat elit sit amet sapien consequat, ut congue metus iaculis.</p>
-                <button>View Full Site</button>
-            </div>
-        </section>
-   
+      <h2>Populaire films</h2>
+      <div id="movies-container" class="movie-grid">
+        <!-- Movie cards worden hier ingevoegd met JS -->
+      </div>
     </main>
+
     <footer>
-        <p>&copy; 2025 Pro Showz</p>
+      <p>&copy; 2025 MoView</p>
     </footer>
-</body>
+
+    <script type="module" src="js/main.js"></script>
+  </body>
 </html>
