@@ -1,0 +1,40 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #000000; /* Zwarte achtergrond */
+    color: #d1b3ff; /* Paarse tekstkleur */
+}
+
+header {
+    background-color: #4b0082; /* Donkerpaars */
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    color: #ffffff; /* Witte tekst */
+    margin: 0;
+}
+
+main {
+    padding: 20px;
+}
+
+a {
+    color: #d1b3ff; /* Paarse links */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    background-color: #4b0082; /* Donkerpaars */
+    color: #ffffff; /* Witte tekst */
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
