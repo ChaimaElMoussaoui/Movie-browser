@@ -18,7 +18,7 @@
     --secondary-color: var(--secondary-color-dark);
 }
 
-/* Light mode override */
+/* Light mode  */
 body.light-mode {
     --bg-color: var(--bg-color-light);
     --text-color: var(--text-color-light);
@@ -97,13 +97,14 @@ button:active {
     color: var(--primary-color);
 }
 
+
 .navbar ul {
-    list-style: none; /* Verwijder de standaard lijststijl */
+    list-style: none;
     display: flex;
     gap: 25px;
     margin: 0;
     padding: 0;
-    align-items: center; /* Zorg dat de items uitgelijnd zijn */
+    align-items: center; 
 }
 
 .navbar ul li a {
@@ -120,42 +121,43 @@ button:active {
     color: var(--text-color-dark);
 }
 
-.search-section {
-    margin: 30px auto;
-    text-align: center;
-}
-
-#search-form {
-    display: inline-flex;
+.navbar-search {
+    display: flex;
     gap: 10px;
+    align-items: center;
+    flex-grow: 1;
+    justify-content: center;
 }
 
 #search-input {
-    padding: 10px;
-    width: 300px;
+    padding: 8px 12px;
+    width: 250px;
     border: 1px solid var(--primary-color);
-    border-radius: 5px;
+    border-radius: 20px;
     background: var(--secondary-color);
     color: var(--text-color);
-    transition: background-color 0.3s, color 0.3s;
+    font-size: 14px;
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
 }
 
 #search-input::placeholder {
     color: #aaa;
+    font-style: italic;
 }
 
 #search-input:focus {
     outline: none;
     border-color: var(--primary-color);
+    box-shadow: 0 0 5px var(--primary-color);
 }
 
 #search-form button {
-    padding: 10px 20px;
+    padding: 8px 16px;
     background: var(--primary-color);
     border: none;
     color: var(--text-color-dark);
     font-weight: bold;
-    border-radius: 5px;
+    border-radius: 20px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
@@ -165,7 +167,45 @@ button:active {
     transform: scale(1.05);
 }
 
-/* Filmkaarten */
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li a {
+    color: var(--text-color);
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-links li a:hover {
+    background-color: var(--primary-color);
+    color: var(--text-color-dark);
+}
+
+.dark-mode-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+
 .movie-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
