@@ -1,4 +1,32 @@
-/* Algemene stijlen */
+:root {
+    /* Donkere modus kleuren */
+    --bg-color-dark: #121212;
+    --text-color-dark: #ffffff;
+    --primary-color-dark: #bb86fc;
+    --secondary-color-dark: #333333;
+
+    /* Lichte modus kleuren */
+    --bg-color-light: #f3f0ff;
+    --text-color-light: #1a1a1a;
+    --primary-color-light: #6200ee;
+    --secondary-color-light: #eae6ff;
+
+    /* Standaard (dark als default) */
+    --bg-color: var(--bg-color-dark);
+    --text-color: var(--text-color-dark);
+    --primary-color: var(--primary-color-dark);
+    --secondary-color: var(--secondary-color-dark);
+}
+
+/* Light mode override */
+body.light-mode {
+    --bg-color: var(--bg-color-light);
+    --text-color: var(--text-color-light);
+    --primary-color: var(--primary-color-light);
+    --secondary-color: var(--secondary-color-light);
+}
+
+
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
@@ -7,38 +35,58 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
-:root {
-    /* Donkere modus kleuren */
-    --bg-color-dark: #121212;
-    --text-color-dark: #ffffff;
-    --primary-color-dark: #bb86fc;
-
-    /* Lichte modus kleuren */
-    --bg-color-light: #f9f9f9;
-    --text-color-light: #121212;
-    --primary-color-light: #6200ee;
-
-    /* Standaard kleuren (start in donkere modus) */
-    --bg-color: var(--bg-color-dark);
-    --text-color: var(--text-color-dark);
-    --primary-color: var(--primary-color-dark);
-}
-
 a {
     color: var(--primary-color);
     text-decoration: none;
+    transition: color 0.3s ease;
 }
 
 a:hover {
+    color: var(--secondary-color);
     text-decoration: underline;
 }
 
-/* Navigatiebalk */
+button {
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: var(--text-color-dark);
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: var(--secondary-color);
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+.darkmode-icon {
+    width: 20px; 
+    height: 20px;
+    background: none; 
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+
+.darkmode-icon:hover {
+    transform: scale(1.1); 
+}
+
+
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--bg-color);
+    background-color: var(--secondary-color);
     padding: 15px 30px;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
 }
@@ -50,29 +98,28 @@ a:hover {
 }
 
 .navbar ul {
-    list-style: none;
+    list-style: none; /* Verwijder de standaard lijststijl */
     display: flex;
     gap: 25px;
     margin: 0;
     padding: 0;
+    align-items: center; /* Zorg dat de items uitgelijnd zijn */
 }
 
 .navbar ul li a {
     color: var(--text-color);
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none; /* Verwijder de onderstreping */
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.dark-mode-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: var(--text-color);
+.navbar ul li a:hover {
+    background-color: var(--primary-color);
+    color: var(--text-color-dark);
 }
 
-.dark-mode-btn .material-icons {
-    font-size: 24px;
-}
-
-/* Zoeksectie */
 .search-section {
     margin: 30px auto;
     text-align: center;
@@ -88,7 +135,7 @@ a:hover {
     width: 300px;
     border: 1px solid var(--primary-color);
     border-radius: 5px;
-    background: var(--bg-color);
+    background: var(--secondary-color);
     color: var(--text-color);
     transition: background-color 0.3s, color 0.3s;
 }
@@ -97,33 +144,28 @@ a:hover {
     color: #aaa;
 }
 
+#search-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
 #search-form button {
     padding: 10px 20px;
     background: var(--primary-color);
     border: none;
-    color: var(--text-color-light);
+    color: var(--text-color-dark);
     font-weight: bold;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 #search-form button:hover {
-    background-color: #9f63e0;
+    background-color: var(--secondary-color);
+    transform: scale(1.05);
 }
 
-/* Populaire films */
-main {
-    padding: 20px;
-}
-
-main h2 {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: var(--primary-color);
-}
-
+/* Filmkaarten */
 .movie-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -131,7 +173,7 @@ main h2 {
 }
 
 .movie {
-    background-color: var(--bg-color);
+    background-color: var(--secondary-color);
     padding: 10px;
     border-radius: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
@@ -156,10 +198,10 @@ main h2 {
     color: var(--text-color);
 }
 
-/* Footer */
+
 footer {
     text-align: center;
-    background-color: var(--bg-color);
+    background-color: var(--secondary-color);
     padding: 15px;
     color: var(--text-color);
 }
