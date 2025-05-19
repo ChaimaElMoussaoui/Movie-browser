@@ -1,3 +1,15 @@
+
+import { fetchPopularMovies } from './api.js';
+import { renderMovies } from './ui.js';
+
+document.addEventListener('DOMContentLoaded', () => {
+    fetchPopularMovies().then(movies => {
+        renderMovies(movies);
+    });
+});
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
     const darkModeButton = document.getElementById("toggle-dark");
     const darkModeIcon = document.getElementById("dark-mode-icon");
@@ -20,12 +32,3 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-
-import { fetchPopularMovies } from './api.js';
-import { renderMovies } from './ui.js';
-
-document.addEventListener('DOMContentLoaded', () => {
-    fetchPopularMovies().then(movies => {
-        renderMovies(movies);
-    });
-});
