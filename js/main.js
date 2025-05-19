@@ -19,3 +19,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+
+import { fetchPopularMovies } from './api.js';
+import { renderMovies } from './ui.js';
+
+document.addEventListener('DOMContentLoaded', () => {
+    fetchPopularMovies().then(movies => {
+        renderMovies(movies);
+    });
+});

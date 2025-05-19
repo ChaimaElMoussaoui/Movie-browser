@@ -1,43 +1,45 @@
 <!DOCTYPE html>
 <html lang="nl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MoView</title>
-    <link rel="stylesheet" href="/css/style.css" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  </head>
-  <body>
-   <header>
-  <nav class="navbar">
-    <h1 class="logo">🎬 MoView</h1>
-    <ul class="nav-links">
-      <li><a href="login.html">Login</a></li>
-      <li><a href="favorites.html">Favorieten</a></li>
-    </ul>
-    <form id="search-form" class="navbar-search">
-      <input type="text" id="search-input" placeholder="Zoek naar films..." />
-      <button type="submit">Zoek</button>
-    </form>
-    <button id="toggle-dark" class="dark-mode-btn">
-      <span id="dark-mode-icon" class="material-icons">dark_mode</span>
-    </button>
-  </nav>
-</header>
 
-    
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MoView</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
 
-    <main>
-      <h2>Populaire films</h2>
-        <div id="movies"></div>
-  </div>
-    </main>
+<body>
+  <header>
+    <nav class="navbar">
+      <h1 class="logo">🎬 MoView</h1>
+      <ul class="nav-links">
+        <li><a href="login.html">Login</a></li>
+        <li><a href="favorites.html">Favorieten</a></li>
+      </ul>
+      <form id="search-form" class="navbar-search">
+        <input type="text" id="search-input" placeholder="Zoek naar films..." />
+        <button type="submit">Zoek</button>
+      </form>
+      <button id="toggle-dark" class="dark-mode-btn">
+        <span id="dark-mode-icon" class="material-icons">dark_mode</span>
+      </button>
+    </nav>
+  </header>
 
-    <footer>2
-      <p>&copy; 2025 MoView</p>
-    </footer>
 
-    <script type="module" src="/js/main.js"></script>
-    <script src="/js/api.js"></script>
-  </body>
+
+  <main>
+    <h2>Populaire films</h2>
+    <div id="movie-container"></div>
+
+  </main>
+
+  <footer>2
+    <p>&copy; 2025 MoView</p>
+  </footer>
+
+  <script type="module" src="/js/main.js"></script>
+</body>
+
 </html>
