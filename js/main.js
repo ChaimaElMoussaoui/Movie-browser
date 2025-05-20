@@ -1,12 +1,33 @@
+import { fetchTrendingMovies } from './api.js';
+import { renderCarousel } from './ui.js';
 
-import { fetchPopularMovies } from './api.js';
-import { renderMovies } from './ui.js';
+async function main() {
+  const trendingMovies = await fetchTrendingMovies();
+  renderCarousel(trendingMovies);
+  setupCarousel(); 
+}
 
-document.addEventListener('DOMContentLoaded', () => {
-    fetchPopularMovies().then(movies => {
-        renderMovies(movies);
-    });
-});
+main();
+
+function setupCarousel() {
+  const carousel = document.querySelector('.carousel');
+  const nextBtn = document.querySelector('.next');
+  const prevBtn = document.querySelector('.prev');
+  const scrollAmount = 220;
+
+  if (!carousel || !nextBtn || !prevBtn) {
+    console.error("Carousel elements not found");
+    return;
+  }
+
+  nextBtn.addEventListener('click', () => {
+    carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  });
+
+  prevBtn.addEventListener('click', () => {
+    carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+  });
+}
 
 
 
