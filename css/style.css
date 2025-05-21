@@ -57,6 +57,10 @@ body {
   font-family: inherit;
 }
 
+main {
+  padding: 2rem;
+}
+
 a {
     color: var(--primary-color);
     text-decoration: none;
@@ -235,12 +239,32 @@ button:active {
 }
 
 
-
-.movie-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
 }
+
+.movie-card {
+  background-color: #222;
+  border-radius: 8px;
+  overflow: hidden;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+}
+
+.movie-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 
 .movie {
     background-color: var(--secondary-color);
@@ -268,9 +292,7 @@ button:active {
     color: var(--text-color);
 }
 
-main {
-  padding: 2rem;
-}
+
 
 .carousel-section h2 {
   margin-bottom: 1rem;

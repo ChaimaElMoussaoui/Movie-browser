@@ -1,10 +1,11 @@
-import { renderCarousel, renderSection } from './ui.js';
+import { renderCarousel, renderSection, renderSearchResults } from './ui.js';
 import {
   fetchTrendingMovies,
   fetchTrendingSeries,
   fetchAiringToday,
   fetchUpcomingMovies
 } from './api.js';
+import { searchMulti } from './api.js';
 
 
 
@@ -20,7 +21,7 @@ main();
 
 async function initHomepage() {
   const trendingMovies = await fetchTrendingMovies();
-  renderCarousel(trendingMovies); // Jouw bestaande functie
+  renderCarousel(trendingMovies);
 
   const trendingSeries = await fetchTrendingSeries();
   renderSection(trendingSeries, 'Trending Series', '#trending-series');
@@ -32,30 +33,27 @@ async function initHomepage() {
   renderSection(upcomingMovies, 'Upcoming Movies', '#upcoming-movies');
 }
 
+
 function setupSearch() {
   const searchInput = document.getElementById('searchInput');
   const searchBtn = document.getElementById('searchBtn');
 
   if (searchBtn && searchInput) {
-    searchBtn.addEventListener('click', async () => {
+    const handleSearch = async () => {
       const query = searchInput.value.trim();
       if (query) {
-        const results = await searchMovies(query);
-        renderCarousel(results);
+        const results = await searchMulti(query);
+        renderSearchResults(results);
       }
-    });
+    };
 
-    searchInput.addEventListener('keydown', async (e) => {
-      if (e.key === 'Enter') {
-        const query = searchInput.value.trim();
-        if (query) {
-          const results = await searchMovies(query);
-          renderCarousel(results);
-        }
-      }
+    searchBtn.addEventListener('click', handleSearch);
+    searchInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') handleSearch();
     });
   }
 }
+
 
 function setupCarousel() {
   const carousel = document.querySelector('.carousel');

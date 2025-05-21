@@ -23,8 +23,8 @@ export async function fetchMovieDetails(movieId) {
 }
 
 // Search Movies
-export async function searchMovies(query, page = 1) {
-  return fetchFromApi(`/search/movie?query=${encodeURIComponent(query)}&page=${page}`);
+export async function searchMulti(query, page = 1) {
+  return fetchFromApi(`/search/multi?query=${encodeURIComponent(query)}&page=${page}`);
 }
 
 // Upcoming Movies
