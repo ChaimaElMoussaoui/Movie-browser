@@ -52,6 +52,9 @@ export async function fetchMovieCredits(movieId) {
   return fetchFromApi(`/movie/${movieId}/credits`);
 }
 
+export async function fetchMovieReviews(movieId) {
+  return fetchFromApi(`/movie/${movieId}/reviews`);
+}
 
 async function fetchFromApi(endpoint) {
   try {

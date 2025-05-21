@@ -626,6 +626,21 @@ button:active {
   }
 }
 
+#reviews-section {
+  margin-top: 32px;
+  background: #222a35;
+  border-radius: 12px;
+  padding: 20px;
+  color: #fff;
+}
+.review {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #333;
+  padding-bottom: 12px;
+}
+.review:last-child {
+  border-bottom: none;
+}
 
 
 footer {

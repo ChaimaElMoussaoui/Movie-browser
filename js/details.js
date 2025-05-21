@@ -1,4 +1,5 @@
 import { fetchMovieDetails } from './api.js';
+import { fetchMovieReviews } from './api.js';
 
 const API_KEY = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkNGYzYzVkNWIzY2UxMmVlMmQxYTlhMzMzOTIyOGI2MSIsIm5iZiI6MTc0NzY1MjU5Ni4zNjcsInN1YiI6IjY4MmIwZmY0MmQ4NDFkNmE2MTJmNzQ0YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.QtKOTI1A4IpFhGSu43xvDN7crsp4Wu6pNQkxfankrcc';
 const BASE_URL = 'https://api.themoviedb.org/3';
@@ -119,3 +120,12 @@ function setupCastCarousel() {
   });
 }
 
+const reviews = await fetchMovieReviews(movie.id);
+
+const reviewsSection = document.getElementById('reviews-section');
+reviewsSection.innerHTML = reviews.results.map(review => `
+  <div class="review">
+    <strong>${review.author}</strong>
+    <p>${review.content}</p>
+  </div>
+`).join('');
