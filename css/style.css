@@ -1,24 +1,30 @@
 :root {
-    /* Donkere modus kleuren */
+
     --bg-color-dark: #121212;
     --text-color-dark: #ffffff;
     --primary-color-dark: #bb86fc;
     --secondary-color-dark: #333333;
 
-    /* Lichte modus kleuren */
-    --bg-color-light: #f3f0ff;
-    --text-color-light: #1a1a1a;
-    --primary-color-light: #6200ee;
-    --secondary-color-light: #eae6ff;
 
-    /* Standaard (dark als default) */
+    --bg-color-light: #fff;
+    --text-color-light: #ffffff;
+    --primary-color-light: #7d27f5;
+    --secondary-color-light: #2c0069; 
+  
+
     --bg-color: var(--bg-color-dark);
     --text-color: var(--text-color-dark);
     --primary-color: var(--primary-color-dark);
     --secondary-color: var(--secondary-color-dark);
 }
 
-/* Light mode  */
+
+
+nav, .navbar {
+    background: var(--secondary-color);
+    color: var(--text-color);
+}
+
 body.light-mode {
     --bg-color: var(--bg-color-light);
     --text-color: var(--text-color-light);
@@ -28,12 +34,27 @@ body.light-mode {
 
 
 body {
+   background: var(--bg-color);
+    color: var(--text-color);
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
     transition: background-color 0.3s, color 0.3s;
     
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px; 
+}
+
+.logo img {
+  height: 40px;
+}
+
+.logo h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-family: inherit;
 }
 
 a {
@@ -66,6 +87,15 @@ button:hover {
 button:active {
     transform: scale(0.95);
 }
+.dark-mode-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
 .darkmode-icon {
     width: 20px; 
     height: 20px;
@@ -82,20 +112,27 @@ button:active {
     transform: scale(1.1); 
 }
 
-
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--secondary-color);
-    padding: 15px 30px;
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--secondary-color);
+  padding: 15px 30px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.navbar .logo {
-    font-size: 28px;
-    font-weight: bold;
-    color: var(--primary-color);
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 
@@ -197,15 +234,7 @@ button:active {
     color: var(--text-color-dark);
 }
 
-.dark-mode-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s ease;
-}
+
 
 .movie-grid {
     display: grid;
@@ -237,14 +266,6 @@ button:active {
     font-size: 1rem;
     font-weight: bold;
     color: var(--text-color);
-}
-
-body {
-  font-family: 'Segoe UI', sans-serif;
-  margin: 0;
-  background-color: #121212;
-  color: #fff;
-
 }
 
 main {
@@ -346,6 +367,242 @@ main {
   text-align: center;
 }
 
+#details-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 1rem;
+}
+
+#details-container img {
+  width: 100%;
+  max-width: 400px;
+  display: block;
+  margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+  #details-container {
+    padding: 0.5rem;
+  }
+}
+#backButton {
+  margin: 24px 0 0 24px;
+  background: #222e3c;
+  color: #fff;
+  border: none;
+  font-size: 1.05rem;
+  padding: 8px 22px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#backButton:hover {
+  background: #38475d;
+}
+
+.hero-container {
+  display: flex;
+  gap: 40px;
+  padding: 32px 6vw 0 6vw;
+  align-items: flex-start;
+}
+
+.poster-col {
+  min-width: 320px;
+  max-width: 340px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.hero-poster {
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 6px 36px #0008;
+}
+
+.rating-block {
+  background: #222e3c;
+  border-radius: 12px;
+  padding: 7px 18px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.rating-block .star {
+  color: #ffd700;
+  font-size: 1.2rem;
+}
+
+.votes {
+  color: #b5bbd4;
+  font-size: 0.95rem;
+  font-weight: 400;
+}
+
+.info-block {
+  background: #222e3c;
+  border-radius: 12px;
+  padding: 7px 18px;
+  font-size: 1.02rem;
+  color: #d3dbea;
+  text-align: center;
+}
+
+.genres-block {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.genre {
+  background: #273a5d;
+  color: #e1eaff;
+  border-radius: 14px;
+  padding: 6px 15px;
+  font-size: 0.98rem;
+  letter-spacing: 0.03em;
+}
+
+.info-col {
+  flex: 1;
+}
+
+.info-col h1 {
+  font-size: 2.3rem;
+  margin: 0 0 18px 0;
+  color: #fff;
+}
+
+.year {
+  color: #b5bbd4;
+  font-size: 1.03rem;
+  margin-bottom: 12px;
+}
+
+.overview {
+  font-size: 1.13rem;
+  line-height: 1.5;
+  color: #e4e7ef;
+}
+
+#cast-section {
+  margin: 50px 0 0 0;
+  padding: 0 6vw;
+}
+
+#cast-section h2 {
+  margin-bottom: 16px;
+  font-size: 1.45rem;
+  color: #fff;
+}
+
+.cast-carousel-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cast-carousel {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 20px;
+  padding: 12px 0;
+  width: 100%;
+}
+
+.cast-card {
+  background: #212a36;
+  border-radius: 15px;
+  min-width: 150px;
+  max-width: 170px;
+  text-align: center;
+  padding: 13px 7px 12px 7px;
+  box-shadow: 0 2px 10px #0003;
+  flex-shrink: 0;
+}
+
+.cast-card img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #374151;
+}
+
+.actor-name {
+  display: block;
+  font-weight: 600;
+  margin-top: 8px;
+  font-size: 1.02rem;
+  color: #fff;
+}
+
+.character {
+  display: block;
+  color: #b5bbd4;
+  font-size: 0.93rem;
+  margin-top: 2px;
+}
+
+.carousel-btn {
+  font-size: 1.28rem;
+  background: #222e3c;
+  border: none;
+  color: #fff;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-btn:hover {
+  background: #38475d;
+}
+
+#trailer-section {
+  padding: 0 6vw 48px 6vw;
+}
+
+#trailer-section h2 {
+  color: #fff;
+  margin-top: 40px;
+  margin-bottom: 16px;
+}
+
+.trailer-block {
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 6px 28px #0008;
+  background: #1a2535;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  .hero-container {
+    flex-direction: column;
+    gap: 18px;
+    padding: 32px 2vw 0 2vw;
+  }
+  #cast-section, #trailer-section {
+    padding: 0 2vw;
+  }
+  .poster-col {
+    max-width: 100vw;
+    min-width: 200px;
+  }
+}
 
 
 

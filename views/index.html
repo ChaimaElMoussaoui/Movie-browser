@@ -1,36 +1,41 @@
 <!DOCTYPE html>
 <html lang="nl">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MoView</title>
   <link rel="stylesheet" href="/css/style.css" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="icon" type="image/png" href="/assets/moview.png" />
 </head>
 
 <body>
   <header>
-    <nav class="navbar">
-      <h1 class="logo">🎬 MoView</h1>
-      <ul class="nav-links">
-        <li><a href="login.html">Login</a></li>
-        <li><a href="favorites.html">Favorieten</a></li>
-      </ul>
-      <form id="search-form" class="navbar-search">
-        <input type="text" id="searchInput" placeholder="Zoek naar films..." />
-        <button type="searchBtn">Zoek</button>
-      </form>
-      <button id="toggle-dark" class="dark-mode-btn">
-        <span id="dark-mode-icon" class="material-icons">dark_mode</span>
-      </button>
-    </nav>
+<nav class="navbar">
+  <div class="logo">
+    <img src="/assets/moview.png" alt="MoView Logo" style="height:40px;">
+    <h1>MoView</h1>
+  </div>
+  <form id="search-form" class="navbar-search">
+    <input type="text" id="searchInput" placeholder="Zoek naar films..." />
+    <button type="searchBtn">Search</button>
+  </form>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="login.html">Login</a></li>
+      <li><a href="favorites.html">Favorites</a></li>
+    </ul>
+    <button id="toggle-dark" class="dark-mode-btn">
+      <span id="dark-mode-icon" class="material-icons">dark_mode</span>
+    </button>
+  </div>
+</nav>
   </header>
 
 
 <main>
   <section class="carousel-section">
-    <h2>🎞️ Trending Films</h2>
+    <h2>Trending Movies</h2>
     <div class="carousel-container">
       <button class="carousel-btn prev">‹</button>
       <div id="carousel" class="carousel"></div>

@@ -42,6 +42,17 @@ export async function fetchAiringToday() {
   return fetchFromApi(`/tv/airing_today`);
 }
 
+// TV Series Details by ID
+export async function fetchSeriesDetails(seriesId) {
+  return fetchFromApi(`/tv/${seriesId}`);
+}
+ 
+// TV Series cast
+export async function fetchMovieCredits(movieId) {
+  return fetchFromApi(`/movie/${movieId}/credits`);
+}
+
+
 async function fetchFromApi(endpoint) {
   try {
     const response = await fetch(`${BASE_URL}${endpoint}`, { headers });

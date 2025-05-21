@@ -22,17 +22,23 @@ export function renderMovies(movies) {
 
 export function renderCarousel(movies) {
   const carousel = document.querySelector('.carousel');
-  if (!carousel) {
-    console.error("Carousel container not found");
-    return;
-  }
+  if (!carousel) return;
   carousel.innerHTML = movies.map(movie => `
-    <div class="carousel-item">
+    <div class="carousel-item" data-id="${movie.id}">
       <img src="https://image.tmdb.org/t/p/w200${movie.poster_path}" alt="${movie.title}" />
       <div class="carousel-title">${movie.title}</div>
     </div>
   `).join('');
+
+  // Voeg click events toe
+  carousel.querySelectorAll('.carousel-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const id = item.getAttribute('data-id');
+      window.location.href = `detail.html?id=${id}`;
+    });
+  });
 }
+
 
 export function renderSection(items, title, containerSelector) {
   const container = document.querySelector(containerSelector);
