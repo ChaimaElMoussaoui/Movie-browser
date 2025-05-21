@@ -327,6 +327,24 @@ main {
 }
 
 
+.section-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.section-item img {
+  width: 100%;
+  border-radius: 0.5rem;
+  object-fit: cover;
+}
+
+.section-item h4 {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  text-align: center;
+}
 
 
 

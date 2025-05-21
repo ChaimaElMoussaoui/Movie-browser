@@ -11,10 +11,6 @@ export async function fetchTrendingMovies() {
   return fetchFromApi(`/trending/movie/week`);
 }
 
-// Popular Movies
-export async function fetchPopularMovies(page = 1) {
-  return fetchFromApi(`/movie/popular?page=${page}`);
-}
 
 // All Movies via Discover 
 export async function fetchAllMovies(page = 1) {
@@ -31,6 +27,20 @@ export async function searchMovies(query, page = 1) {
   return fetchFromApi(`/search/movie?query=${encodeURIComponent(query)}&page=${page}`);
 }
 
+// Upcoming Movies
+export async function fetchUpcomingMovies(page = 1) {
+  return fetchFromApi(`/movie/upcoming?page=${page}&language=en-US`);
+}
+
+// Trending TV Shows
+export async function fetchTrendingSeries() {
+  return fetchFromApi(`/trending/tv/week`);
+}
+
+// Airing Today TV Shows
+export async function fetchAiringToday() {
+  return fetchFromApi(`/tv/airing_today`);
+}
 
 async function fetchFromApi(endpoint) {
   try {
@@ -42,3 +52,4 @@ async function fetchFromApi(endpoint) {
     return [];
   }
 }
+

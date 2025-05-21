@@ -1,13 +1,62 @@
-import { fetchTrendingMovies } from './api.js';
-import { renderCarousel } from './ui.js';
+import { renderCarousel, renderSection } from './ui.js';
+import {
+  fetchTrendingMovies,
+  fetchTrendingSeries,
+  fetchAiringToday,
+  fetchUpcomingMovies
+} from './api.js';
+
+
 
 async function main() {
   const trendingMovies = await fetchTrendingMovies();
   renderCarousel(trendingMovies);
   setupCarousel(); 
+  setupSearch();
+  initHomepage();
 }
 
 main();
+
+async function initHomepage() {
+  const trendingMovies = await fetchTrendingMovies();
+  renderCarousel(trendingMovies); // Jouw bestaande functie
+
+  const trendingSeries = await fetchTrendingSeries();
+  renderSection(trendingSeries, 'Trending Series', '#trending-series');
+
+  const airingToday = await fetchAiringToday();
+  renderSection(airingToday, 'Airing Today', '#airing-today');
+
+  const upcomingMovies = await fetchUpcomingMovies();
+  renderSection(upcomingMovies, 'Upcoming Movies', '#upcoming-movies');
+}
+
+function setupSearch() {
+  const searchInput = document.getElementById('searchInput');
+  const searchBtn = document.getElementById('searchBtn');
+
+  if (searchBtn && searchInput) {
+    searchBtn.addEventListener('click', async () => {
+      const query = searchInput.value.trim();
+      if (query) {
+        const results = await searchMovies(query);
+        renderCarousel(results);
+      }
+    });
+
+    // Optioneel: zoeken bij "Enter"
+    searchInput.addEventListener('keydown', async (e) => {
+      if (e.key === 'Enter') {
+        const query = searchInput.value.trim();
+        if (query) {
+          const results = await searchMovies(query);
+          renderCarousel(results);
+        }
+      }
+    });
+  }
+}
 
 function setupCarousel() {
   const carousel = document.querySelector('.carousel');
@@ -28,8 +77,6 @@ function setupCarousel() {
     carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
   });
 }
-
-
 
 document.addEventListener("DOMContentLoaded", () => {
     const darkModeButton = document.getElementById("toggle-dark");
@@ -52,4 +99,3 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
-
