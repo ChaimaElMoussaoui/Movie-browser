@@ -7,7 +7,7 @@
 
 
     --bg-color-light: #fff;
-    --text-color-light: #ffffff;
+    --text-color-light: #080808;
     --primary-color-light: #7d27f5;
     --secondary-color-light: #2c0069; 
   
@@ -22,7 +22,7 @@
 
 nav, .navbar {
     background: var(--secondary-color);
-    color: var(--text-color);
+    color: white;
 }
 
 body.light-mode {
@@ -150,7 +150,7 @@ button:active {
 }
 
 .navbar ul li a {
-    color: var(--text-color);
+    color: white;
     font-weight: bold;
     padding: 5px 10px;
     border-radius: 5px;
@@ -626,22 +626,21 @@ button:active {
   }
 }
 
-#reviews-section {
-  margin-top: 32px;
-  background: #222a35;
-  border-radius: 12px;
-  padding: 20px;
-  color: #fff;
-}
 .review {
-  margin-bottom: 20px;
-  border-bottom: 1px solid #333;
-  padding-bottom: 12px;
+  background: #232f43;
+  color: #fff;
+  border-radius: 10px;
+  margin-bottom: 18px;
+  padding: 14px 16px;
 }
-.review:last-child {
-  border-bottom: none;
+.review strong {
+  color: #bb86fc;
 }
-
+.review-content {
+  display: block;
+  margin-top: 6px;
+  font-size: 1.02rem;
+}
 
 footer {
     text-align: center;
