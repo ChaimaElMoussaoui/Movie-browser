@@ -1,0 +1,18 @@
+{
+  "hosting": {
+    "site": "movie-browser-4a574-9febc",
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
+
