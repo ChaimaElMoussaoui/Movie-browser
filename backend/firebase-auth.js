@@ -8,7 +8,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js";
 import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
 
-// Firebase configuration (make sure rules are secure in your Firebase console)
+// Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBEzeSYFcKDlZr_1Nmy6wEtx28FsNPaw2A",
   authDomain: "movie-browser-4a574.firebaseapp.com",
@@ -23,7 +23,6 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getFirestore();
 
-
 function showMessage(message, divId) {
   var messageDiv = document.getElementById(divId);
   if (!messageDiv) return;
@@ -35,6 +34,7 @@ function showMessage(message, divId) {
   }, 5000);
 }
 
+// Registration logic
 const registerForm = document.getElementById("registerForm");
 if (registerForm) {
   registerForm.addEventListener("submit", async (event) => {
@@ -52,7 +52,7 @@ if (registerForm) {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
- 
+
       await setDoc(doc(db, "users", user.uid), {
         email: email,
         username: username,
@@ -71,6 +71,7 @@ if (registerForm) {
   });
 }
 
+// Login logic
 const loginForm = document.getElementById("loginForm");
 if (loginForm) {
   loginForm.addEventListener("submit", async (event) => {
@@ -82,12 +83,7 @@ if (loginForm) {
       await signInWithEmailAndPassword(auth, email, password);
       showMessage("Login successful! Redirecting...", "signInMessage");
       setTimeout(() => {
-       
-
         window.location.href = "/views/index.html";
-
-        window.location.href = "../index.html";
-
       }, 1500);
     } catch (error) {
       if (error.code === "auth/wrong-password" || error.code === "auth/user-not-found") {
@@ -100,14 +96,16 @@ if (loginForm) {
 }
 
 onAuthStateChanged(auth, (user) => {
+  window.auth = auth;
   const area = document.getElementById('profileArea');
+  const loginLink = document.getElementById('login-link');
+  if (!area) return;
   if (user) {
-
-    const imgUrl = user.photoURL || '/img/default-pf.png';
+    const imgUrl = user.photoURL || '/assets/default.png';
     area.innerHTML = `<img src="${imgUrl}" alt="profile" class="profile-pic">`;
+    if (loginLink) loginLink.style.display = "none";
   } else {
     area.innerHTML = '';
+    if (loginLink) loginLink.style.display = "";
   }
 });
-
-
