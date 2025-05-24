@@ -6,9 +6,33 @@
   <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
-  <header>
-
-  </header>
+<header>
+  <nav class="navbar">
+    <div class="logo">
+      <a href="/views/index.html">
+        <img src="/assets/moview.png" alt="MoView Logo" style="height:40px;">
+      </a>
+      <h1>MoView</h1>
+    </div>
+    <form id="search-form" class="navbar-search">
+      <input type="text" id="searchInput" placeholder="Zoek naar films..." />
+      <button type="submit" id="searchBtn">Search</button>
+    </form>
+    <div class="nav-right">
+      <ul class="nav-links">
+        <li><a href="/views/index.html">Home</a></li>
+        <li><a href="/views/favorites.html">Favorites</a></li>
+        <li><a href="/views/profile.html" id="profile-link">
+          <div id="profileArea"></div>
+        </a></li>
+        <li><a href="#" id="logout-link" style="display:none;">Logout</a></li>
+      </ul>
+      <button id="toggle-dark" class="dark-mode-btn">
+        <span id="dark-mode-icon" class="material-icons">dark_mode</span>
+      </button>
+    </div>
+  </nav>
+</header>
   <main>
     <h2>My Profile</h2>
     <section id="favorites">
