@@ -4,7 +4,7 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  onAuthStateChanged
+  onAuthStateChanged,
 } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js";
 import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
 
@@ -83,7 +83,11 @@ if (loginForm) {
       showMessage("Login successful! Redirecting...", "signInMessage");
       setTimeout(() => {
        
+
         window.location.href = "/views/index.html";
+
+        window.location.href = "../index.html";
+
       }, 1500);
     } catch (error) {
       if (error.code === "auth/wrong-password" || error.code === "auth/user-not-found") {
@@ -94,6 +98,7 @@ if (loginForm) {
     }
   });
 }
+
 onAuthStateChanged(auth, (user) => {
   const area = document.getElementById('profileArea');
   if (user) {
@@ -104,3 +109,5 @@ onAuthStateChanged(auth, (user) => {
     area.innerHTML = '';
   }
 });
+
+
