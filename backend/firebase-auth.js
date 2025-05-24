@@ -109,3 +109,28 @@ onAuthStateChanged(auth, (user) => {
     if (loginLink) loginLink.style.display = "";
   }
 });
+
+onAuthStateChanged(auth, async (user) => {
+  if (!user) {
+    window.location.href = "/views/login.html";
+    return;
+  }
+  const userDoc = await getDoc(doc(db, "users", user.uid));
+  const userData = userDoc.exists() ? userDoc.data() : {};
+
+  // Show favorites
+  const favoriteList = document.getElementById("favoriteList");
+  (userData.favorites || []).forEach(fav => {
+    const li = document.createElement("li");
+    li.textContent = fav; // You can fetch movie/show details if needed
+    favoriteList.appendChild(li);
+  });
+
+  // Show reviews
+  const reviewList = document.getElementById("reviewList");
+  (userData.reviews || []).forEach(review => {
+    const li = document.createElement("li");
+    li.textContent = `${review.movieId}: "${review.reviewText}" (${review.rating}/5)`;
+    reviewList.appendChild(li);
+  });
+});
