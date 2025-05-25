@@ -10,8 +10,7 @@ import {
 import {
   getFirestore,
   setDoc,
-  doc,
-  getDoc,
+  doc
 } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
 
 // Firebase configuration
@@ -40,6 +39,7 @@ function showMessage(message, divId) {
   }, 5000);
 }
 
+// REGISTRATION
 const registerForm = document.getElementById("registerForm");
 if (registerForm) {
   registerForm.addEventListener("submit", async (event) => {
@@ -68,7 +68,7 @@ if (registerForm) {
       }, 2000);
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
-        showMessage("Email already in use.", "signUpMessage");
+        showMessage("An account already exists with this email address.", "signUpMessage");
       } else {
         showMessage("Registration failed: " + error.message, "signUpMessage");
       }
@@ -92,11 +92,11 @@ if (loginForm) {
       }, 1500);
     } catch (error) {
       if (error.code === "auth/wrong-password") {
-        showMessage("Wachtwoord onjuist", "signInMessage");
+        showMessage("Incorrect password.", "signInMessage");
       } else if (error.code === "auth/user-not-found") {
-        showMessage("Gebruiker niet gevonden", "signInMessage");
+        showMessage("User not found.", "signInMessage");
       } else {
-        showMessage("Login mislukt: " + error.message, "signInMessage");
+        showMessage("Login failed: " + error.message, "signInMessage");
       }
     }
   });
@@ -120,7 +120,7 @@ onAuthStateChanged(auth, async (user) => {
   }
 });
 
-// Logout logic (for navbar)
+
 const logoutLink = document.getElementById('logout-link');
 if (logoutLink) {
   logoutLink.addEventListener('click', async (e) => {
