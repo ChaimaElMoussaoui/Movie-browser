@@ -40,7 +40,6 @@ function showMessage(message, divId) {
   }, 5000);
 }
 
-// Registration logic
 const registerForm = document.getElementById("registerForm");
 if (registerForm) {
   registerForm.addEventListener("submit", async (event) => {
@@ -65,7 +64,7 @@ if (registerForm) {
       });
       showMessage("Account created successfully! Redirecting...", "signUpMessage");
       setTimeout(() => {
-        window.location.href = "login.html";
+        window.location.href = "/views/profile.html";
       }, 2000);
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
@@ -77,7 +76,7 @@ if (registerForm) {
   });
 }
 
-// Login logic
+
 const loginForm = document.getElementById("loginForm");
 if (loginForm) {
   loginForm.addEventListener("submit", async (event) => {
@@ -103,7 +102,6 @@ if (loginForm) {
   });
 }
 
-// Auth state and navbar/profile logic
 onAuthStateChanged(auth, async (user) => {
   const area = document.getElementById('profileArea');
   const loginLink = document.getElementById('login-link');
