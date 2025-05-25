@@ -15,7 +15,7 @@ if (searchForm) {
     e.preventDefault();
     const query = searchInput.value.trim();
     if (!query) return;
-    window.location.href = `/search.html?q=${encodeURIComponent(query)}`;
+    window.location.href = `/views/search.html?q=${encodeURIComponent(query)}`;
   });
 }
 
@@ -24,7 +24,6 @@ async function main() {
   const trendingMovies = await fetchTrendingMovies();
   renderCarousel(trendingMovies);
   setupCarousel(); 
-  setupSearch();
   initHomepage();
 }
 
