@@ -30,7 +30,6 @@ export function renderCarousel(movies) {
     </div>
   `).join('');
 
-  // Voeg click events toe
   carousel.querySelectorAll('.carousel-item').forEach(item => {
     item.addEventListener('click', () => {
       const id = item.getAttribute('data-id');
@@ -58,51 +57,4 @@ export function renderSection(items, title, containerSelector) {
       `).join('')}
     </div>
   `;
-}
-
-
-export function renderSearchResults(results, query = "") {
-  const container = document.querySelector('#search-results');
-  if (!container) return;
-
-  container.innerHTML = '';
-
-
-  const filtered = results.filter(item => item.media_type === 'movie' || item.media_type === 'tv');
-
-  if (filtered.length === 0) {
-    container.innerHTML = '<p>Geen resultaten gevonden.</p>';
-    return;
-  }
-
-  let bestMatch = null;
-  if (query) {
-    bestMatch = filtered.find(item =>
-      (item.title && item.title.toLowerCase() === query.toLowerCase()) ||
-      (item.name && item.name.toLowerCase() === query.toLowerCase())
-    );
-  }
-
-  const toDisplay = bestMatch ? [bestMatch] : filtered;
-
-  toDisplay.forEach(item => {
-    const title = item.title || item.name || 'Geen titel';
-    const imgPath = item.poster_path
-      ? `https://image.tmdb.org/t/p/w300${item.poster_path}`
-      : '/assets/placeholder.png'; 
-
-    const el = document.createElement('div');
-    el.classList.add('movie-card');
-    el.innerHTML = `
-      <img src="${imgPath}" alt="${title}">
-      <h3>${title}</h3>
-      <p>${item.overview?.substring(0, 100) || 'Geen beschrijving beschikbaar'}...</p>
-    `;
-
-    el.addEventListener('click', () => {
-      window.location.href = `detail.html?id=${item.id}&type=${item.media_type}`;
-    });
-
-    container.appendChild(el);
-  });
 }

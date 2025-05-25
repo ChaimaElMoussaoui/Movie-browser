@@ -22,10 +22,6 @@ export async function fetchMovieDetails(movieId) {
   return fetchFromApi(`/movie/${movieId}`);
 }
 
-// Search Movies
-export async function searchMulti(query, page = 1) {
-  return fetchFromApi(`/search/multi?query=${encodeURIComponent(query)}&page=${page}`);
-}
 
 // Upcoming Movies
 export async function fetchUpcomingMovies(page = 1) {
@@ -56,6 +52,13 @@ export async function fetchMovieCredits(movieId) {
 export async function fetchMovieReviews(movieId) {
   return fetchFromApi(`/movie/${movieId}/reviews`);
 }
+
+// Search for Movies, TV Shows, and People
+export async function fetchMultiSearch(query, page = 1) {
+  const endpoint = `/search/multi?query=${encodeURIComponent(query)}&page=${page}&language=nl-NL&include_adult=false`;
+  return fetchFromApi(endpoint);
+}
+
 
 async function fetchFromApi(endpoint) {
   try {
