@@ -1,11 +1,11 @@
-import { renderCarousel, renderSection, renderSearchResults } from './ui.js';
+import { renderCarousel, renderSection } from './ui.js';
 import {
   fetchTrendingMovies,
   fetchTrendingSeries,
   fetchAiringToday,
   fetchUpcomingMovies
 } from './api.js';
-import { searchMulti } from './api.js';
+
 
 
 
@@ -33,21 +33,7 @@ async function initHomepage() {
   renderSection(upcomingMovies, 'Upcoming Movies', '#upcoming-movies');
 }
 
-function setupSearch() {
-  const searchForm = document.getElementById('search-form');
-  const searchInput = document.getElementById('searchInput');
 
-  if (searchForm && searchInput) {
-    searchForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const query = searchInput.value.trim();
-      if (query) {
-        const results = await searchMulti(query);
-        renderSearchResults(results, query);
-      }
-    });
-  }
-}
 
 
 function setupCarousel() {

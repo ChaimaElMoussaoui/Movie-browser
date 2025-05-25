@@ -22,10 +22,6 @@ export async function fetchMovieDetails(movieId) {
   return fetchFromApi(`/movie/${movieId}`);
 }
 
-// Search Movies
-export async function searchMulti(query, page = 1) {
-  return fetchFromApi(`/search/multi?query=${encodeURIComponent(query)}&page=${page}`);
-}
 
 // Upcoming Movies
 export async function fetchUpcomingMovies(page = 1) {
