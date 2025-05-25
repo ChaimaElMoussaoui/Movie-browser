@@ -660,7 +660,7 @@ button:active {
   box-shadow: 0 2px 7px rgba(0,0,0,0.07);
   cursor: pointer;
 }
-/* Card container */
+
 .movie-card {
   position: relative;
   background: #181818;
@@ -678,7 +678,7 @@ button:active {
   transform: translateY(-4px) scale(1.03);
 }
 
-/* Movie label */
+
 .movie-label {
   position: absolute;
   top: 14px;

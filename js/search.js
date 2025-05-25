@@ -55,7 +55,10 @@ if (searchForm) {
   searchForm.addEventListener('submit', function(e) {
     e.preventDefault();
     const query = searchInput.value.trim();
-    if (!query) return;
+    if (!query) {
+      searchResultsSection.innerHTML = '<p style="color:#ffdd57;font-weight:700;">Voer een zoekterm in</p>';
+      return;
+    }
     window.location.href = `/views/search.html?q=${encodeURIComponent(query)}`;
   });
 }
