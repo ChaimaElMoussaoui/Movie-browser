@@ -5,8 +5,14 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
+  signOut,
 } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js";
-import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
+import {
+  getFirestore,
+  setDoc,
+  doc,
+  getDoc,
+} from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -24,7 +30,7 @@ const auth = getAuth();
 const db = getFirestore();
 
 function showMessage(message, divId) {
-  var messageDiv = document.getElementById(divId);
+  const messageDiv = document.getElementById(divId);
   if (!messageDiv) return;
   messageDiv.style.display = "block";
   messageDiv.innerHTML = message;
@@ -34,7 +40,7 @@ function showMessage(message, divId) {
   }, 5000);
 }
 
-
+// Registration logic
 const registerForm = document.getElementById("registerForm");
 if (registerForm) {
   registerForm.addEventListener("submit", async (event) => {
@@ -71,6 +77,7 @@ if (registerForm) {
   });
 }
 
+// Login logic
 const loginForm = document.getElementById("loginForm");
 if (loginForm) {
   loginForm.addEventListener("submit", async (event) => {
@@ -96,6 +103,26 @@ if (loginForm) {
   });
 }
 
+// Auth state and navbar/profile logic
+onAuthStateChanged(auth, async (user) => {
+  const area = document.getElementById('profileArea');
+  const loginLink = document.getElementById('login-link');
+  const logoutLink = document.getElementById('logout-link');
+  if (user) {
+    if (area) {
+      const imgUrl = user.photoURL || '/assets/default.png';
+      area.innerHTML = `<img src="${imgUrl}" alt="profile" class="profile-pic">`;
+    }
+    if (loginLink) loginLink.style.display = "none";
+    if (logoutLink) logoutLink.style.display = "";
+  } else {
+    if (area) area.innerHTML = '';
+    if (loginLink) loginLink.style.display = "";
+    if (logoutLink) logoutLink.style.display = "none";
+  }
+});
+
+// Logout logic (for navbar)
 const logoutLink = document.getElementById('logout-link');
 if (logoutLink) {
   logoutLink.addEventListener('click', async (e) => {
@@ -104,65 +131,3 @@ if (logoutLink) {
     window.location.href = "/views/index.html";
   });
 }
-
-onAuthStateChanged(auth, async (user) => {
-  const area = document.getElementById('profileArea');
-  if (user) {
-    if (logoutLink) logoutLink.style.display = "";
-    const imgUrl = user.photoURL || '/assets/default.png';
-    if (area) {
-      area.innerHTML = `<img src="${imgUrl}" alt="profile" class="profile-pic">`;
-    }
-
-    const userDoc = await getDoc(doc(db, "users", user.uid));
-    const userData = userDoc.exists() ? userDoc.data() : {};
-    
-
-    const favoriteList = document.getElementById("favoriteList");
-    favoriteList.innerHTML = "";
-    (userData.favorites || []).forEach(fav => {
-      const li = document.createElement("li");
-      li.textContent = fav; 
-      favoriteList.appendChild(li);
-    });
- 
-    const reviewList = document.getElementById("reviewList");
-    reviewList.innerHTML = "";
-    (userData.reviews || []).forEach(review => {
-      const li = document.createElement("li");
-      li.textContent = `${review.movieId}: "${review.reviewText}" (${review.rating}/5)`;
-      reviewList.appendChild(li);
-    });
-  } else {
-    if (area) area.innerHTML = '';
-    if (logoutLink) logoutLink.style.display = "none";
-    window.location.href = "/views/login.html";
-  }
-
-});
-
-onAuthStateChanged(auth, async (user) => {
-  if (!user) {
-    window.location.href = "/views/login.html";
-    return;
-  }
-  const userDoc = await getDoc(doc(db, "users", user.uid));
-  const userData = userDoc.exists() ? userDoc.data() : {};
-
-  // Show favorites
-  const favoriteList = document.getElementById("favoriteList");
-  (userData.favorites || []).forEach(fav => {
-    const li = document.createElement("li");
-    li.textContent = fav; // You can fetch movie/show details if needed
-    favoriteList.appendChild(li);
-  });
-
-  // Show reviews
-  const reviewList = document.getElementById("reviewList");
-  (userData.reviews || []).forEach(review => {
-    const li = document.createElement("li");
-    li.textContent = `${review.movieId}: "${review.reviewText}" (${review.rating}/5)`;
-    reviewList.appendChild(li);
-  });
-auth/firebase-auth.js
-});
