@@ -100,7 +100,7 @@ a:hover {
   color: #6105f5;
 }
 
-/* Message Styling */
+
 .messageDiv, .signUpMessageDiv, .signInMessageDiv {
   background: linear-gradient(90deg, #5a00ea 0%, #9327fa 100%);
   color: #fff;

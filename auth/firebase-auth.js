@@ -34,7 +34,7 @@ function showMessage(message, divId) {
   }, 5000);
 }
 
-// Registration logic
+
 const registerForm = document.getElementById("registerForm");
 if (registerForm) {
   registerForm.addEventListener("submit", async (event) => {
@@ -71,7 +71,6 @@ if (registerForm) {
   });
 }
 
-// Login logic
 const loginForm = document.getElementById("loginForm");
 if (loginForm) {
   loginForm.addEventListener("submit", async (event) => {
@@ -86,27 +85,58 @@ if (loginForm) {
         window.location.href = "/views/index.html";
       }, 1500);
     } catch (error) {
-      if (error.code === "auth/wrong-password" || error.code === "auth/user-not-found") {
-        showMessage("Invalid email or password.", "signInMessage");
+      if (error.code === "auth/wrong-password") {
+        showMessage("Wachtwoord onjuist", "signInMessage");
+      } else if (error.code === "auth/user-not-found") {
+        showMessage("Gebruiker niet gevonden", "signInMessage");
       } else {
-        showMessage("Login failed: " + error.message, "signInMessage");
+        showMessage("Login mislukt: " + error.message, "signInMessage");
       }
     }
   });
 }
 
-onAuthStateChanged(auth, (user) => {
-  window.auth = auth;
+const logoutLink = document.getElementById('logout-link');
+if (logoutLink) {
+  logoutLink.addEventListener('click', async (e) => {
+    e.preventDefault();
+    await signOut(auth);
+    window.location.href = "/views/index.html";
+  });
+}
+
+onAuthStateChanged(auth, async (user) => {
   const area = document.getElementById('profileArea');
-  const loginLink = document.getElementById('login-link');
-  if (!area) return;
   if (user) {
+    if (logoutLink) logoutLink.style.display = "";
     const imgUrl = user.photoURL || '/assets/default.png';
-    area.innerHTML = `<img src="${imgUrl}" alt="profile" class="profile-pic">`;
-    if (loginLink) loginLink.style.display = "none";
+    if (area) {
+      area.innerHTML = `<img src="${imgUrl}" alt="profile" class="profile-pic">`;
+    }
+
+    const userDoc = await getDoc(doc(db, "users", user.uid));
+    const userData = userDoc.exists() ? userDoc.data() : {};
+    
+
+    const favoriteList = document.getElementById("favoriteList");
+    favoriteList.innerHTML = "";
+    (userData.favorites || []).forEach(fav => {
+      const li = document.createElement("li");
+      li.textContent = fav; 
+      favoriteList.appendChild(li);
+    });
+ 
+    const reviewList = document.getElementById("reviewList");
+    reviewList.innerHTML = "";
+    (userData.reviews || []).forEach(review => {
+      const li = document.createElement("li");
+      li.textContent = `${review.movieId}: "${review.reviewText}" (${review.rating}/5)`;
+      reviewList.appendChild(li);
+    });
   } else {
-    area.innerHTML = '';
-    if (loginLink) loginLink.style.display = "";
+    if (area) area.innerHTML = '';
+    if (logoutLink) logoutLink.style.display = "none";
+    window.location.href = "/views/login.html";
   }
 <<<<<<< HEAD:backend/firebase-auth.js
 });

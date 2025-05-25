@@ -1,6 +1,5 @@
 import { fetchMultiSearch } from './api.js';
 
-
 function getQueryParam(name) {
   const params = new URLSearchParams(window.location.search);
   return params.get(name) || "";
@@ -25,13 +24,19 @@ async function showSearchResults() {
       const title = item.title || item.name || "Onbekend";
       const type = item.media_type || "onbekend";
       const img = item.poster_path
-        ? `https://image.tmdb.org/t/p/w200${item.poster_path}`
-        : (item.profile_path ? `https://image.tmdb.org/t/p/w200${item.profile_path}` : "/assets/moview.png");
+        ? `https://image.tmdb.org/t/p/w300${item.poster_path}`
+        : (item.profile_path ? `https://image.tmdb.org/t/p/w300${item.profile_path}` : "/assets/moview.png");
+      const year = (item.release_date || item.first_air_date || '').slice(0, 4) || '';
+      const rating = item.vote_average ? item.vote_average.toFixed(1) : '';
       return `
-        <div class="result-card">
+        <div class="movie-card">
+          <span class="movie-label">${type.charAt(0).toUpperCase() + type.slice(1)}</span>
           <img src="${img}" alt="${title}" />
           <h3>${title}</h3>
-          <p>Type: ${type}</p>
+          <div class="movie-meta">
+            ${rating ? `<span class="star">&#11088;</span> ${rating}` : ''}
+            ${year ? `<span class="year">${year}</span>` : ''}
+          </div>
         </div>
       `;
     }).join("");
@@ -42,3 +47,18 @@ async function showSearchResults() {
 }
 
 showSearchResults();
+
+const searchForm = document.getElementById('search-form');
+const searchInput = document.getElementById('searchInput');
+
+if (searchForm) {
+  searchForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const query = searchInput.value.trim();
+    if (!query) {
+      searchResultsSection.innerHTML = '<p style="color:#ffdd57;font-weight:700;">Voer een zoekterm in</p>';
+      return;
+    }
+    window.location.href = `/views/search.html?q=${encodeURIComponent(query)}`;
+  });
+}

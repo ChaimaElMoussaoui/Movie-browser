@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <title>My Profile</title>
   <link rel="stylesheet" href="/css/style.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
 <header>
@@ -22,9 +23,11 @@
       <ul class="nav-links">
         <li><a href="/views/index.html">Home</a></li>
         <li><a href="/views/favorites.html">Favorites</a></li>
-        <li><a href="/views/profile.html" id="profile-link">
-          <div id="profileArea"></div>
-        </a></li>
+        <li>
+          <a href="/views/profile.html" id="profile-link">
+            <div id="profileArea"></div>
+          </a>
+        </li>
         <li><a href="#" id="logout-link" style="display:none;">Logout</a></li>
       </ul>
       <button id="toggle-dark" class="dark-mode-btn">
@@ -46,4 +49,5 @@
   </main>
   <script type="module" src="/js/profile.js"></script>
   <script src="/js/main.js"></script>
+</body>
 </html>

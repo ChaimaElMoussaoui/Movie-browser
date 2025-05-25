@@ -59,7 +59,6 @@ export async function fetchMultiSearch(query, page = 1) {
   return fetchFromApi(endpoint);
 }
 
-
 async function fetchFromApi(endpoint) {
   try {
     const response = await fetch(`${BASE_URL}${endpoint}`, { headers });
