@@ -7,17 +7,7 @@ import {
 } from './api.js';
 
 
-const searchForm = document.getElementById('search-form');
-const searchInput = document.getElementById('searchInput');
 
-if (searchForm) {
-  searchForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const query = searchInput.value.trim();
-    if (!query) return;
-    window.location.href = `/views/search.html?q=${encodeURIComponent(query)}`;
-  });
-}
 
 
 async function main() {
@@ -44,7 +34,17 @@ async function initHomepage() {
 }
 
 
+const searchForm = document.getElementById('search-form');
+const searchInput = document.getElementById('searchInput');
 
+if (searchForm) {
+  searchForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const query = searchInput.value.trim();
+    if (!query) return;
+    window.location.href = `/views/search.html?q=${encodeURIComponent(query)}`;
+  });
+}
 
 function setupCarousel() {
   const carousel = document.querySelector('.carousel');
