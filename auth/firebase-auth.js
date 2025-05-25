@@ -108,6 +108,7 @@ onAuthStateChanged(auth, (user) => {
     area.innerHTML = '';
     if (loginLink) loginLink.style.display = "";
   }
+<<<<<<< HEAD:backend/firebase-auth.js
 });
 
 onAuthStateChanged(auth, async (user) => {
@@ -133,4 +134,6 @@ onAuthStateChanged(auth, async (user) => {
     li.textContent = `${review.movieId}: "${review.reviewText}" (${review.rating}/5)`;
     reviewList.appendChild(li);
   });
+=======
+>>>>>>> 918e0916cd872918c180144baf2cc8dcf4930886:auth/firebase-auth.js
 });

@@ -61,12 +61,12 @@ export function renderSection(items, title, containerSelector) {
 }
 
 
-
-export function renderSearchResults(results) {
+export function renderSearchResults(results, query = "") {
   const container = document.querySelector('#search-results');
   if (!container) return;
 
   container.innerHTML = '';
+
 
   const filtered = results.filter(item => item.media_type === 'movie' || item.media_type === 'tv');
 
@@ -75,7 +75,17 @@ export function renderSearchResults(results) {
     return;
   }
 
-  filtered.forEach(item => {
+  let bestMatch = null;
+  if (query) {
+    bestMatch = filtered.find(item =>
+      (item.title && item.title.toLowerCase() === query.toLowerCase()) ||
+      (item.name && item.name.toLowerCase() === query.toLowerCase())
+    );
+  }
+
+  const toDisplay = bestMatch ? [bestMatch] : filtered;
+
+  toDisplay.forEach(item => {
     const title = item.title || item.name || 'Geen titel';
     const imgPath = item.poster_path
       ? `https://image.tmdb.org/t/p/w300${item.poster_path}`
@@ -89,7 +99,6 @@ export function renderSearchResults(results) {
       <p>${item.overview?.substring(0, 100) || 'Geen beschrijving beschikbaar'}...</p>
     `;
 
- 
     el.addEventListener('click', () => {
       window.location.href = `detail.html?id=${item.id}&type=${item.media_type}`;
     });

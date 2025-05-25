@@ -33,23 +33,18 @@ async function initHomepage() {
   renderSection(upcomingMovies, 'Upcoming Movies', '#upcoming-movies');
 }
 
-
 function setupSearch() {
+  const searchForm = document.getElementById('search-form');
   const searchInput = document.getElementById('searchInput');
-  const searchBtn = document.getElementById('searchBtn');
 
-  if (searchBtn && searchInput) {
-    const handleSearch = async () => {
+  if (searchForm && searchInput) {
+    searchForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
       const query = searchInput.value.trim();
       if (query) {
         const results = await searchMulti(query);
-        renderSearchResults(results);
+        renderSearchResults(results, query);
       }
-    };
-
-    searchBtn.addEventListener('click', handleSearch);
-    searchInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') handleSearch();
     });
   }
 }
