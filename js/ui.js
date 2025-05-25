@@ -30,7 +30,6 @@ export function renderCarousel(movies) {
     </div>
   `).join('');
 
-  // Voeg click events toe
   carousel.querySelectorAll('.carousel-item').forEach(item => {
     item.addEventListener('click', () => {
       const id = item.getAttribute('data-id');

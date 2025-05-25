@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zoekresultaten | MoView</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="icon" type="image/png" href="/assets/moview.png" />
+</head>
+<body>
+  <header>
+    <!-- Je bestaande navbar kun je hier plakken -->
+    <nav class="navbar">
+      <div class="logo">
+        <img src="/assets/moview.png" alt="MoView Logo" style="height:40px;">
+        <h1>MoView</h1>
+      </div>
+      <form id="search-form" class="navbar-search">
+        <input type="text" id="searchInput" placeholder="Zoek naar films..." />
+        <button type="submit">Search</button>
+      </form>
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li id="login-link"><a href="login.html">Login</a></li>
+        </ul>
+        <div id="profileArea"></div>
+        <button id="toggle-dark" class="dark-mode-btn">
+          <span id="dark-mode-icon" class="material-icons">dark_mode</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <h2>Zoekresultaten</h2>
+    <section id="search-results" class="results-grid"></section>
+  </main>
+  <script type="module" src="/js/searchResults.js"></script>
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>

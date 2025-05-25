@@ -7,6 +7,17 @@ import {
 } from './api.js';
 
 
+const searchForm = document.getElementById('search-form');
+const searchInput = document.getElementById('searchInput');
+
+if (searchForm) {
+  searchForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const query = searchInput.value.trim();
+    if (!query) return;
+    window.location.href = `/search.html?q=${encodeURIComponent(query)}`;
+  });
+}
 
 
 async function main() {

@@ -53,6 +53,13 @@ export async function fetchMovieReviews(movieId) {
   return fetchFromApi(`/movie/${movieId}/reviews`);
 }
 
+// Search for Movies, TV Shows, and People
+export async function fetchMultiSearch(query, page = 1) {
+  const endpoint = `/search/multi?query=${encodeURIComponent(query)}&page=${page}&language=nl-NL&include_adult=false`;
+  return fetchFromApi(endpoint);
+}
+
+
 async function fetchFromApi(endpoint) {
   try {
     const response = await fetch(`${BASE_URL}${endpoint}`, { headers });
