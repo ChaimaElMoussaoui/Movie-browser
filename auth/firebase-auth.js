@@ -138,4 +138,12 @@ onAuthStateChanged(auth, async (user) => {
     if (logoutLink) logoutLink.style.display = "none";
     window.location.href = "/views/login.html";
   }
+
+  signInWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    const user = userCredential.user;
+    window.location.href = "/views/index.html"; // Redirect naar homepage
+  })
+
 });
+
