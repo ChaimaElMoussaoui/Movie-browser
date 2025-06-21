@@ -6,6 +6,7 @@ import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
+  updateProfile
 } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js";
 import {
   getFirestore,
@@ -28,8 +29,8 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth();
-const db = getFirestore();
+export const auth = getAuth(app);
+const db = getFirestore(app);
 
 function showMessage(message, divId) {
   const messageDiv = document.getElementById(divId);
@@ -118,6 +119,19 @@ if (logoutLink) {
   });
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 // AUTH STATE & PROFIEL
 onAuthStateChanged(auth, async (user) => {
   const area = document.getElementById('profileArea');
@@ -192,6 +206,9 @@ onAuthStateChanged(auth, async (user) => {
   }
 });
 
+
+
+
 // FAVORIET TOEVOEGEN: alleen als ingelogd
 export async function addFavorite(movieId) {
   const user = auth.currentUser;
@@ -206,3 +223,39 @@ export async function addFavorite(movieId) {
   });
   alert("Toegevoegd aan favorieten!");
 }
+
+// ====== PROFIELFOTO UPLOADEN & NAAM WIJZIGEN ======
+
+
+// === Naam wijzigen (en opslaan in Firestore) ===
+const saveBtn = document.querySelector(".save-profile");
+const nameEl = document.getElementById("profileNaam");
+if (saveBtn && nameEl) {
+  saveBtn.addEventListener("click", async (e) => {
+    e.preventDefault();
+    const user = auth.currentUser;
+    if (!user) return;
+    const newName = nameEl.value.trim();
+    if (newName && newName !== user.displayName) {
+      await updateProfile(user, { displayName: newName });
+      await updateDoc(doc(db, "users", user.uid), { username: newName });
+      alert("Naam bijgewerkt!");
+    }
+  });
+}
+
+// === Email verificatie opnieuw sturen ===
+document.addEventListener("click", function(e) {
+  if (e.target && e.target.id === "resendVerification") {
+    e.preventDefault();
+    const user = auth.currentUser;
+    if (user) {
+      user.sendEmailVerification().then(() => {
+        alert("Verificatie-email verstuurd!");
+      });
+    }
+  }
+});
+
+
+export { app };

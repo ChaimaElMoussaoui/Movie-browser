@@ -130,20 +130,7 @@ header {
   color: var(--text-color-dark);
 }
 
-.dark-mode-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  margin-left: 5px;
-  margin-right: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.2s;
-}
-.dark-mode-btn:hover {
-  transform: scale(1.12);
-}
+
 
 .nav-profile {
   display: flex;
