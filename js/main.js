@@ -10,6 +10,7 @@ import {
 
 
 
+
 async function main() {
   const trendingMovies = await fetchTrendingMovies();
   renderCarousel(trendingMovies);

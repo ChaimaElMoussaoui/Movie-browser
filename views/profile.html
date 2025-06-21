@@ -9,46 +9,61 @@
 <body>
 <header>
   <nav class="navbar">
-    <div class="logo">
-      <a href="/views/index.html">
-        <img src="/assets/moview.png" alt="MoView Logo" style="height:40px;">
+    <div class="navbar-left">
+      <a href="/views/index.html" class="logo">
+        <span class="material-icons" style="color:#a78bfa;font-size:2.2rem;vertical-align:middle;">theaters</span>
+        <span class="logo-text">MoView</span>
       </a>
-      <h1>MoView</h1>
     </div>
     <form id="search-form" class="navbar-search">
       <input type="text" id="searchInput" placeholder="Zoek naar films..." />
       <button type="submit" id="searchBtn">Search</button>
     </form>
-    <div class="nav-right">
-      <ul class="nav-links">
-        <li><a href="/views/index.html">Home</a></li>
-        <li><a href="/views/favorites.html">Favorites</a></li>
-        <li>
-          <a href="/views/profile.html" id="profile-link">
-            <div id="profileArea"></div>
-          </a>
-        </li>
-        <li><a href="#" id="logout-link" style="display:none;">Logout</a></li>
-      </ul>
-      <button id="toggle-dark" class="dark-mode-btn">
-        <span id="dark-mode-icon" class="material-icons">dark_mode</span>
-      </button>
-    </div>
-  </nav>
+    <div class="navbar-right">
+  <ul class="nav-links">
+    <li><a href="/views/index.html">Home</a></li>
+    <li><a href="/views/favorites.html">Favorites</a></li>
+    <li><a href="#" id="logout-link" style="display:none;">Logout</a></li>
+  </ul>
+  <button id="toggle-dark" class="dark-mode-btn" aria-label="Toggle dark mode">
+    <span id="dark-mode-icon" class="material-icons">dark_mode</span>
+  </button>
+  <a href="/views/profile.html" id="profile-link">
+    <div id="profileArea" class="nav-profile"></div>
+  </a>
+</div>
 </header>
-  <main>
-    <h2>My Profile</h2>
-    <section id="favorites">
-      <h3>Favorites</h3>
-      <ul id="favoriteList"></ul>
-    </section>
-    <section id="reviews">
-      <h3>My Reviews</h3>
-      <ul id="reviewList"></ul>
-    </section>
-  </main>
-  <script type="module" src="/js/profile.js"></script>
-  <script src="/js/main.js"></script>
-  <script src="/auth/firebase-auth.js"></script>
+<main class="profile-main">
+  <section class="profile-header">
+    <div>
+     
+      <nav class="profile-menu">
+        <a class="active">Profile</a>
+      </nav>
+    </div>
+    <div class="profile-avatar">
+      <img id="profilePic" src="/assets/default.png" alt="Avatar">
+      <button id="editProfilePic"><span class="material-icons">edit</span></button>
+    </div>
+  </section>
+  <section class="profile-content">
+    <form id="editProfileForm">
+      <label for="profileEmail">Email address</label>
+      <input type="email" id="profileEmail" disabled>
+      <div id="emailStatus" class="email-status not-verified">
+        <b>Not Verified</b>
+        <span>Your account has not been verified. <a href="#">Click here</a> to resend verification email.</span>
+      </div>
+      <label for="profileNaam">Your name</label>
+      <input type="text" id="profileNaam" disabled>
+      <label>Joined</label>
+      <input type="text" id="profileJoined" disabled>
+      <button type="button" class="change-password">Change password</button>
+      <button type="submit" class="save-profile">Save</button>
+    </form>
+  </section>
+</main>
+<script type="module" src="/auth/firebase-auth.js"></script>
+<script src="/js/main.js"></script>
 </body>
 </html>
