@@ -1,16 +1,13 @@
 :root {
-
-    --bg-color-dark: #121212;
-    --text-color-dark: #ffffff;
+    --bg-color-dark: #181824;
+    --text-color-dark: #fff;
     --primary-color-dark: #bb86fc;
-    --secondary-color-dark: #333333;
-
+    --secondary-color-dark: #23232b;
 
     --bg-color-light: #fff;
     --text-color-light: #080808;
     --primary-color-light: #7d27f5;
     --secondary-color-light: #2c0069; 
-  
 
     --bg-color: var(--bg-color-dark);
     --text-color: var(--text-color-dark);
@@ -18,7 +15,12 @@
     --secondary-color: var(--secondary-color-dark);
 }
 
-
+body.light-mode {
+    --bg-color: var(--bg-color-light);
+    --text-color: var(--text-color-light);
+    --primary-color: var(--primary-color-light);
+    --secondary-color: var(--secondary-color-light);
+}
 
 nav, .navbar {
     background: var(--secondary-color);
@@ -116,138 +118,128 @@ button:active {
     transform: scale(1.1); 
 }
 
-/* --- Nieuwe navbar styles hieronder --- */
-
 .navbar {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  background: #343434;
-  padding: 0 36px;
-  height: 64px;
-  box-sizing: border-box;
-}
-
-.navbar-left .logo {
-  display: flex;
   align-items: center;
-  text-decoration: none;
-  gap: 8px;
+  background-color: var(--secondary-color);
+  padding: 15px 30px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.logo-text {
-  font-size: 1.7rem;
-  font-weight: 700;
-  color: #fff;
-  letter-spacing: 1px;
-  margin-left: 4px;
-}
-
-.navbar-search {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 36px;
-  gap: 10px;
-}
-
-#searchInput {
-  padding: 7px 15px;
-  border-radius: 4px;
-  border: none;
-  width: 220px;
-  font-size: 1rem;
-  background: #fff;
-  color: #222;
-  margin-right: 12px;
-}
-
-#searchBtn {
-  background: #a78bfa;
-  color: #fff;
-  font-weight: 600;
-  border: none;
-  border-radius: 18px;
-  padding: 6px 18px;
-  font-size: 1rem;
-  cursor: pointer;
-  margin-left: 0;
-  transition: background 0.2s;
-}
-
-#searchBtn:hover {
-  background: #7c3aed;
-}
-
-.navbar-right {
+.nav-right {
   display: flex;
   align-items: center;
   gap: 20px;
 }
 
 .nav-links {
-  list-style: none;
   display: flex;
-  gap: 28px;
+  gap: 15px;
   margin: 0;
   padding: 0;
+  list-style: none;
+}
+
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+    align-items: center; 
+}
+
+.navbar ul li a {
+    color: white;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none; /* Verwijder de onderstreping */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar ul li a:hover {
+    background-color: var(--primary-color);
+    color: var(--text-color-dark);
+}
+
+.navbar-search {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-grow: 1;
+    justify-content: center;
+}
+
+#search-input {
+    padding: 8px 12px;
+    width: 250px;
+    border: 1px solid var(--primary-color);
+    border-radius: 20px;
+    background: var(--secondary-color);
+    color: var(--text-color);
+    font-size: 14px;
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+#search-input::placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+
+#search-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px var(--primary-color);
+}
+
+#search-form button {
+    padding: 8px 16px;
+    background: var(--primary-color);
+    border: none;
+    color: var(--text-color-dark);
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#search-form button:hover {
+    background-color: var(--secondary-color);
+    transform: scale(1.05);
+}
+
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
 }
 
 .nav-links li a {
-  color: #fff;
-  font-weight: 600;
-  text-decoration: none;
-  font-size: 1.1rem;
-  transition: color 0.2s;
+    color: var(--text-color);
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.nav-links li a:hover,
-.nav-links li a:focus {
-  color: #a78bfa;
+.nav-links li a:hover {
+    background-color: var(--primary-color);
+    color: var(--text-color-dark);
 }
 
-.nav-profile {
-  margin-left: 22px;
-}
-
-.nav-profile img,
-#profileArea img {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid #a78bfa;
-  background: #fff;
-  box-shadow: 0 2px 9px #0002;
-  vertical-align: middle;
-}
-
-#profile-link {
-  display: flex;
-  align-items: center;
-}
-
-@media (max-width: 900px) {
-  .navbar {
-    flex-direction: column;
-    height: auto;
-    padding: 12px;
-  }
-  .navbar-search {
-    margin: 10px 0;
-  }
-  .navbar-right {
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 12px;
-  }
-  .nav-profile {
-    margin: 0;
-  }
-}
-
-/* --- Einde nieuwe navbar styles --- */
 
 .movies-grid {
   display: grid;
@@ -756,132 +748,16 @@ button:active {
   max-width: 1200px;
 }
 
-.profile-main {
-  max-width: 800px;
-  margin: 48px auto;
-  background: #22223b;
-  border-radius: 18px;
-  box-shadow: 0 6px 28px #0004;
-  padding: 36px 32px;
-  color: #fff;
-}
-.profile-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 32px;
-}
-.profile-header h2 {
-  margin: 0 0 8px 0;
-  font-size: 2rem;
-  font-weight: 700;
-}
-.profile-menu {
-  display: flex;
-  gap: 30px;
-  margin-top: 8px;
-}
-.profile-menu a {
-  color: #bdbdbd;
-  font-weight: 500;
-  text-decoration: none;
-  padding-bottom: 3px;
-  border-bottom: 2px solid transparent;
-  transition: color 0.2s, border-color 0.2s;
-  cursor: pointer;
-}
-.profile-menu a.active,
-.profile-menu a:hover {
-  color: #fff;
-  border-bottom: 2px solid #fa7bb4;
-}
-.profile-avatar {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-}
-.profile-avatar img {
-  width: 96px;
-  height: 96px;
-  border-radius: 50%;
-  border: 3px solid #7bdff2;
-  object-fit: cover;
-  box-shadow: 0 2px 12px #0003;
-}
-#editProfilePic {
-  background: #fff;
-  color: #333;
-  border-radius: 50%;
-  border: none;
-  width: 32px;
-  height: 32px;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  transform: translate(25%, 25%);
-  box-shadow: 0 2px 8px #0002;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.profile-content {
-  margin-top: 24px;
-}
-#editProfileForm {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-#editProfileForm label {
-  font-size: 1rem;
-  color: #bbb;
-  margin-bottom: 2px;
-}
-#editProfileForm input {
-  background: #292945;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  padding: 10px 12px;
-  margin-bottom: 7px;
-  font-size: 1rem;
-}
-.email-status {
-  padding: 10px;
-  border-radius: 8px;
-  font-size: 0.97rem;
-}
-.not-verified {
-  background: #181820;
-  color: #fff;
-  border-left: 4px solid #f44336;
-}
-.save-profile {
-  background: #fa7bb4;
-  border: none;
-  border-radius: 8px;
-  padding: 12px 0;
-  color: #fff;
-  font-size: 1.15rem;
-  font-weight: 700;
-  margin-top: 10px;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.save-profile:hover {
-  background: #ec4899;
-}
-.change-password {
-  background: none;
-  border: none;
-  color: #fa7bb4;
-  font-size: 1rem;
-  text-align: left;
-  cursor: pointer;
-  margin-bottom: 10px;
-}
+
+
+
+
+
+
+
+
+
+
 
 
 

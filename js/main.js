@@ -67,19 +67,32 @@ function setupCarousel() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    const darkModeButton = document.getElementById("toggle-dark");
-    const darkModeIcon = document.getElementById("dark-mode-icon");
-    let isDarkMode = true;
+const darkBtn = document.getElementById("toggle-dark");
+const icon = document.getElementById("dark-mode-icon");
+const body = document.body;
 
-    darkModeButton.addEventListener("click", () => {
-        isDarkMode = !isDarkMode;
-        document.body.classList.toggle("light-mode", !isDarkMode);
+function setLightMode(enabled) {
+  if (enabled) {
+    body.classList.add("light-mode");
+    if (icon) icon.textContent = "light_mode";
+    localStorage.setItem("lightMode", "true");
+  } else {
+    body.classList.remove("light-mode");
+    if (icon) icon.textContent = "dark_mode";
+    localStorage.setItem("lightMode", "false");
+  }
+}
 
-        if (isDarkMode) {
-            darkModeIcon.textContent = "dark_mode"; 
-        } else {
-            darkModeIcon.textContent = "light_mode";
-        }
-    });
+if (darkBtn) {
+  darkBtn.addEventListener("click", () => {
+    const enabled = !body.classList.contains("light-mode");
+    setLightMode(enabled);
+  });
+}
+
+// Bij laden: lightmode uit localStorage toepassen
+window.addEventListener("DOMContentLoaded", () => {
+  if (localStorage.getItem("lightMode") === "true") {
+    setLightMode(true);
+  }
 });
