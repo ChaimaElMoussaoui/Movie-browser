@@ -1,16 +1,13 @@
 :root {
-
-    --bg-color-dark: #121212;
-    --text-color-dark: #ffffff;
+    --bg-color-dark: #181824;
+    --text-color-dark: #fff;
     --primary-color-dark: #bb86fc;
-    --secondary-color-dark: #333333;
-
+    --secondary-color-dark: #23232b;
 
     --bg-color-light: #fff;
     --text-color-light: #080808;
     --primary-color-light: #7d27f5;
     --secondary-color-light: #2c0069; 
-  
 
     --bg-color: var(--bg-color-dark);
     --text-color: var(--text-color-dark);
@@ -18,7 +15,12 @@
     --secondary-color: var(--secondary-color-dark);
 }
 
-
+body.light-mode {
+    --bg-color: var(--bg-color-light);
+    --text-color: var(--text-color-light);
+    --primary-color: var(--primary-color-light);
+    --secondary-color: var(--secondary-color-light);
+}
 
 nav, .navbar {
     background: var(--secondary-color);
@@ -745,6 +747,18 @@ button:active {
   width: 100%;
   max-width: 1200px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 footer {
