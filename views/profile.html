@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
   <meta charset="UTF-8" />
-  <title>My Profile</title>
+  <title>Mijn Profiel</title>
   <link rel="stylesheet" href="/css/style.css" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
@@ -22,13 +22,13 @@
     <div class="nav-right">
       <ul class="nav-links">
         <li><a href="/views/index.html">Home</a></li>
-        <li><a href="/views/favorites.html">Favorites</a></li>
+        <li><a href="/views/favorites.html">Favorieten</a></li>
         <li>
           <a href="/views/profile.html" id="profile-link">
             <div id="profileArea"></div>
           </a>
         </li>
-        <li><a href="#" id="logout-link" style="display:none;">Logout</a></li>
+        <li><a href="#" id="logout-link" style="display:none;">Uitloggen</a></li>
       </ul>
       <button id="toggle-dark" class="dark-mode-btn">
         <span id="dark-mode-icon" class="material-icons">dark_mode</span>
@@ -36,19 +36,13 @@
     </div>
   </nav>
 </header>
-  <main>
-    <h2>My Profile</h2>
-    <section id="favorites">
-      <h3>Favorites</h3>
-      <ul id="favoriteList"></ul>
-    </section>
-    <section id="reviews">
-      <h3>My Reviews</h3>
-      <ul id="reviewList"></ul>
-    </section>
-  </main>
-  <script type="module" src="/js/profile.js"></script>
-  <script src="/js/main.js"></script>
-  <script src="/auth/firebase-auth.js"></script>
+<main>
+  <div id="profileContainer">
+    
+  </div>
+</main>
+<script type="module" src="/js/profile.js"></script>
+<script src="/js/main.js"></script>
+<script src="/auth/firebase-auth.js"></script>
 </body>
 </html>

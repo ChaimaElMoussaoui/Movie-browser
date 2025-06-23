@@ -82,3 +82,39 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js";
+
+const auth = getAuth();
+
+function updateNavbar(user) {
+  const profileArea = document.getElementById('profileArea');
+  const logoutLink = document.getElementById('logout-link');
+  
+  if (user) {
+    // Toon profielicoon/link
+    if (profileArea) {
+      profileArea.innerHTML = `<span class="material-icons">account_circle</span>`;
+    }
+    if (logoutLink) logoutLink.style.display = "";
+  } else {
+    if (profileArea) profileArea.innerHTML = "";
+    if (logoutLink) logoutLink.style.display = "none";
+  }
+}
+
+// Auth-status checken en updates in navbar
+onAuthStateChanged(auth, user => {
+  updateNavbar(user);
+});
+
+// Logout werkt direct
+const logoutLink = document.getElementById('logout-link');
+if (logoutLink) {
+  logoutLink.addEventListener('click', async (e) => {
+    e.preventDefault();
+    await signOut(auth);
+    window.location.href = "/views/index.html";
+  });
+}
