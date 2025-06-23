@@ -17,6 +17,7 @@ import {
   arrayUnion
 } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
 
+
 // Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBEzeSYFcKDlZr_1Nmy6wEtx28FsNPaw2A",
@@ -42,6 +43,7 @@ function showMessage(message, divId) {
     messageDiv.style.opacity = 0;
   }, 5000);
 }
+
 
 // REGISTRATION
 const registerForm = document.getElementById("registerForm");
@@ -118,19 +120,6 @@ if (logoutLink) {
     window.location.href = "/views/index.html";
   });
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // AUTH STATE & PROFIEL
 onAuthStateChanged(auth, async (user) => {
