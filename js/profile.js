@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import { getUserFavorites } from "./favorites.js";
 import { getUserReviews } from "./reviews.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js";
@@ -60,15 +60,14 @@ function renderProfile(user, movies) {
 }
 
 // Auth check en profiel renderen
-const auth = getAuth();
-onAuthStateChanged(auth, user => {
+onAuthStateChanged(getAuth(app), user => {
   if (user) {
     renderProfile(user, movies);
   } else {
     // Niet ingelogd, stuur naar login
     window.location.href = "/views/login.html";
-=======
-
+  }
+});
 
 // Importeer Firebase modules vanuit je bestaande CDN (let op: geen node imports!)
 import { getAuth, updateProfile, sendEmailVerification } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js";
@@ -132,6 +131,7 @@ document.addEventListener("click", function(e) {
         alert("Verificatie-email verstuurd!");
       });
     }
->>>>>>> cc387f8e0492cc458d7d8e55e274bd72354f314b
+
   }
+
 });

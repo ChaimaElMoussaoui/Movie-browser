@@ -120,7 +120,7 @@ function setupCarousel() {
   prevBtn.addEventListener('click', () => {
     carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
   });
-<<<<<<< HEAD
+
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -143,7 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js";
 
-const auth = getAuth();
+
 
 function updateNavbar(user) {
   const profileArea = document.getElementById('profileArea');
@@ -174,6 +174,5 @@ if (logoutLink) {
     await signOut(auth);
     window.location.href = "/views/index.html";
   });
-=======
->>>>>>> cc387f8e0492cc458d7d8e55e274bd72354f314b
+
 }
