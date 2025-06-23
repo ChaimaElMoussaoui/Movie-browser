@@ -79,6 +79,10 @@ onAuthStateChanged(getAuth(app), user => {
 });
 
 
+
+
+
+
 // === PROFIEL FOTO UPLOAD ===
 const avatarInput = document.getElementById("profilePicInput");
 const avatarImg = document.getElementById("profilePic");

@@ -1,3 +1,15 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
+const firebaseConfig = {
+  apiKey: "JOUW_API_KEY",
+  authDomain: "JOUW_PROJECT_ID.firebaseapp.com",
+  projectId: "JOUW_PROJECT_ID",
+  storageBucket: "JOUW_PROJECT_ID.appspot.com",
+  messagingSenderId: "JOUW_MESSAGING_SENDER_ID",
+  appId: "JOUW_APP_ID"
+};
+initializeApp(firebaseConfig);
+
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js";
 import { renderCarousel, renderSection } from './ui.js';
 import {
   fetchTrendingMovies,
@@ -5,10 +17,6 @@ import {
   fetchAiringToday,
   fetchUpcomingMovies
 } from './api.js';
-
-
-
-
 
 async function main() {
   const trendingMovies = await fetchTrendingMovies();
@@ -33,18 +41,20 @@ async function initHomepage() {
   renderSection(upcomingMovies, 'Upcoming Movies', '#upcoming-movies');
 }
 
-
 // --- Navbar login/profiel
 const auth = getAuth();
 function updateNavbar(user) {
   const profileArea = document.getElementById('profileArea');
   const logoutLink = document.getElementById('logout-link');
+  const loginLink = document.getElementById('login-link');
   if (user) {
     if (profileArea) profileArea.innerHTML = `<span class="material-icons">account_circle</span>`;
     if (logoutLink) logoutLink.style.display = "";
+    if (loginLink) loginLink.style.display = "none";
   } else {
     if (profileArea) profileArea.innerHTML = "";
     if (logoutLink) logoutLink.style.display = "none";
+    if (loginLink) loginLink.style.display = "";
   }
 }
 onAuthStateChanged(auth, user => { updateNavbar(user); });
@@ -54,7 +64,7 @@ if (logoutLink) {
   logoutLink.addEventListener('click', async (e) => {
     e.preventDefault();
     await signOut(auth);
-    window.location.href = "/views/index.html";
+    window.location.href = "index.html";
   });
 }
 
@@ -75,8 +85,8 @@ if (searchForm && searchInput) {
 // Carousel functionaliteit
 function setupCarousel() {
   const carousel = document.querySelector('.carousel');
-  const nextBtn = document.querySelector('.next');
-  const prevBtn = document.querySelector('.prev');
+  const nextBtn = document.querySelector('.carousel-btn.next');
+  const prevBtn = document.querySelector('.carousel-btn.prev');
   const scrollAmount = 220;
 
   if (!carousel || !nextBtn || !prevBtn) {
@@ -92,11 +102,6 @@ function setupCarousel() {
     carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
   });
 }
-
-
-
-
-
 
 // Dark mode toggle
 const toggleDark = document.getElementById("toggle-dark");
@@ -116,4 +121,3 @@ if (toggleDark) {
     setDarkMode(!isActive);
   });
 }
-

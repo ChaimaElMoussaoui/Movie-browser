@@ -1,4 +1,3 @@
-
 export function renderMovies(movies) {
     const container = document.querySelector('#movie-container');
     container.innerHTML = '';
@@ -37,7 +36,6 @@ export function renderCarousel(movies) {
     });
   });
 }
-
 
 export function renderSection(items, title, containerSelector) {
   const container = document.querySelector(containerSelector);
