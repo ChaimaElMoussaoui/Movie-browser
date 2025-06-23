@@ -3,6 +3,15 @@ import { getUserFavorites } from "./favorites.js";
 import { getUserReviews } from "./reviews.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js";
 
+// Importeer Firebase modules vanuit je bestaande CDN (let op: geen node imports!)
+import { updateProfile, sendEmailVerification } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-storage.js";
+import { getFirestore, doc, updateDoc } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
+import { app } from "/auth/firebase-auth.js"; // Zorg dat je app exported in firebase-auth.js!
+
+const auth = getAuth(app);
+const storage = getStorage(app);
+const db = getFirestore(app);
 // Stel deze variabele in met al je films (bijvoorbeeld via een fetch)
 const movies = window.allMovies || []; // Zorg dat dit een array van {id, title} is!
 
@@ -69,15 +78,6 @@ onAuthStateChanged(getAuth(app), user => {
   }
 });
 
-// Importeer Firebase modules vanuit je bestaande CDN (let op: geen node imports!)
-import { getAuth, updateProfile, sendEmailVerification } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-storage.js";
-import { getFirestore, doc, updateDoc } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
-import { app } from "/auth/firebase-auth.js"; // Zorg dat je app exported in firebase-auth.js!
-
-const auth = getAuth(app);
-const storage = getStorage(app);
-const db = getFirestore(app);
 
 // === PROFIEL FOTO UPLOAD ===
 const avatarInput = document.getElementById("profilePicInput");

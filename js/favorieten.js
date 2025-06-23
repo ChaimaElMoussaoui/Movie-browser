@@ -1,6 +1,6 @@
 import { getAuth } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js";
 import { getFirestore, doc, getDoc, updateDoc, arrayUnion } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
-import "../js/firebase-init.js"; // ZORG dat je firebase-init importeert!
+import "../auth/firebase-auth.js"; 
 
 const db = getFirestore();
 const auth = getAuth();
