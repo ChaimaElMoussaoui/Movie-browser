@@ -73,9 +73,9 @@ async function loadFavorites(userId) {
   }
 }
 
-
+//toon favo lijst in pagina
 function renderFavorites(favorites) {
-  const container = document.getElementById('favorites-container');
+  const container = document.getElementById('favorites-container'); //haaalt containter op waar favo in moeten
   
   container.innerHTML = favorites.map(favorite => `
     <div class="favorite-item" data-id="${favorite.id}">
@@ -93,18 +93,21 @@ function renderFavorites(favorites) {
       </div>
     </div>
   `).join('');
+  //maaakt html van elk favo en zet in container
   
   // Add event listeners for remove buttons
   container.querySelectorAll('.remove-btn').forEach(button => {
     button.addEventListener('click', async (e) => {
-      const movieId = parseInt(e.target.closest('.remove-btn').dataset.movieId);
+      //als op verwijder wordt geklikt
+      const movieId = parseInt(e.target.closest('.remove-btn').dataset.movieId);//haal id van film op
       
       if (confirm('Weet je zeker dat je deze film uit je favorieten wilt verwijderen?')) {
+        // Bevestig verwijderen
         try {
-          await removeUserFavorite(movieId);
-          // Reload favorites
-          await loadFavorites(auth.currentUser.uid);
+          await removeUserFavorite(movieId);// verwijder favo uit database
+          await loadFavorites(auth.currentUser.uid);// Herlaad favo
         } catch (error) {
+          //als er fout is
           console.error('Fout bij verwijderen favoriet:', error);
           alert('Er ging iets fout bij het verwijderen van de favoriet.');
         }
