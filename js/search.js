@@ -28,8 +28,14 @@ async function showSearchResults() {
         : (item.profile_path ? `https://image.tmdb.org/t/p/w300${item.profile_path}` : "/assets/moview.png");
       const year = (item.release_date || item.first_air_date || '').slice(0, 4) || '';
       const rating = item.vote_average ? item.vote_average.toFixed(1) : '';
+      
+      // Only make movie and TV show cards clickable, not person cards
+      const isClickable = type === 'movie' || type === 'tv';
+      const clickableClass = isClickable ? 'clickable' : '';
+      const dataAttributes = isClickable ? `data-id="${item.id}" data-type="${type}"` : '';
+      
       return `
-        <div class="movie-card">
+        <div class="movie-card ${clickableClass}" ${dataAttributes}>
           <span class="movie-label">${type.charAt(0).toUpperCase() + type.slice(1)}</span>
           <img src="${img}" alt="${title}" />
           <h3>${title}</h3>
@@ -40,6 +46,15 @@ async function showSearchResults() {
         </div>
       `;
     }).join("");
+    
+    // Add click event listeners to clickable cards
+    document.querySelectorAll('.movie-card.clickable').forEach(card => {
+      card.addEventListener('click', () => {
+        const id = card.getAttribute('data-id');
+        const type = card.getAttribute('data-type');
+        window.location.href = `detail.html?id=${id}&type=${type}`;
+      });
+    });
   } catch (err) {
     searchResultsSection.innerHTML = "<p>Fout bij het ophalen van resultaten.</p>";
     console.error(err);

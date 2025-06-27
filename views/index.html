@@ -18,18 +18,23 @@
   </div>
 
   <form id="search-form" class="navbar-search">
-  <input type="text" id="searchInput" placeholder="Zoek naar films..." />
-  <button type="submit">Search</button>
-</form>
+    <input type="text" id="searchInput" placeholder="Zoek naar films..." />
+    <button type="submit">Search</button>
+  </form>
 
   <div class="nav-right">
     <ul class="nav-links">
- <li id="login-link"><a href="login.html">Login</a></li>
+      <li><a href="/views/index.html" class="active">Home</a></li>
+      <li><a href="/views/favorites.html">Favorieten</a></li>
+      <li id="login-link"><a href="/views/login.html">Login</a></li>
     </ul>
+    <div class="nav-controls">
       <div id="profileArea"></div>
-    <button id="toggle-dark" class="dark-mode-btn">
-      <span id="dark-mode-icon" class="material-icons">dark_mode</span>
-    </button>
+      <button id="toggle-dark" class="dark-mode-btn">
+        <span id="dark-mode-icon" class="material-icons">dark_mode</span>
+      </button>
+    </div>
+  </div>
   </div>
 </nav>
   </header>

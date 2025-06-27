@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mijn Profiel - MoView</title>
+  <title>Mijn Favorieten - MoView</title>
   <link rel="stylesheet" href="/css/style.css" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="icon" type="image/png" href="/assets/moview.png" />
@@ -25,7 +25,7 @@
       <div class="nav-right">
         <ul class="nav-links">
           <li><a href="/views/index.html">Home</a></li>
-          <li><a href="/views/favorites.html">Favorieten</a></li>
+          <li><a href="/views/favorites.html" class="active">Favorites</a></li>
           <li id="login-link"><a href="/views/login.html">Login</a></li>
         </ul>
         <div class="nav-controls">
@@ -38,18 +38,25 @@
     </nav>
   </header>
 
-  <main class="profile-main">
-    <div class="container">
-      <h1>Mijn Profiel</h1>
-      <div id="profile-content" class="profile-container">
-        <div class="loading-message">
-          <p>Profiel laden...</p>
-        </div>
+  <main>
+    <section class="favorites-section">
+      <h1>Mijn Favorieten</h1>
+      <div id="loading-message" style="text-align: center; padding: 50px;">
+        <p>Favorieten laden...</p>
       </div>
-    </div>
+      <div id="favorites-container" class="favorites-grid" style="display: none;">
+        <!-- Favorieten worden hier geladen -->
+      </div>
+      <div id="no-favorites" style="display: none; text-align: center; padding: 50px;">
+        <h2>Geen favorieten gevonden</h2>
+        <p>Je hebt nog geen favorieten toegevoegd.</p>
+        <a href="/views/index.html" class="btn">Ontdek Films</a>
+      </div>
+    </section>
   </main>
 
-  <script src="/js/main.js"></script>
-  <script type="module" src="/js/profile.js"></script>
+  <script type="module" src="/js/favorites-page.js"></script>
 </body>
+
+</html>
 </html>

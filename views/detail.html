@@ -1,19 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 
 <head>
   <meta charset="UTF-8">
-  <title>Details</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Film Details - MoView</title>
   <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="icon" type="image/png" href="/assets/moview.png" />
 </head>
-<button id="backButton">← Terug</button>
-<div id="details-hero"></div>
-<div id="trailer-section"></div>
-<div id="cast-section"></div>
 
-<div id="reviews-section"></div>
-<div id="details-container"></div>
-<script type="module" src="/js/details.js"></script>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <img src="/assets/moview.png" alt="MoView Logo" style="height:40px;">
+        <h1><a href="/views/index.html" style="text-decoration: none; color: inherit;">MoView</a></h1>
+      </div>
+
+      <form id="search-form" class="navbar-search">
+        <input type="text" id="searchInput" placeholder="Zoek naar films..." />
+        <button type="submit">Search</button>
+      </form>
+
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="/views/index.html">Home</a></li>
+          <li><a href="/views/favorites.html">Favorieten</a></li>
+          <li id="login-link"><a href="/views/login.html">Login</a></li>
+        </ul>
+        <div class="nav-controls">
+          <div id="profileArea"></div>
+          <button id="toggle-dark" class="dark-mode-btn">
+            <span id="dark-mode-icon" class="material-icons">dark_mode</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <button id="backButton" class="back-btn">
+      <span class="material-icons">arrow_back</span>
+      Terug
+    </button>
+    
+    <div id="details-hero"></div>
+    <div id="trailer-section"></div>
+    <div id="cast-section"></div>
+    <div id="reviews-section"></div>
+    <div id="details-container"></div>
+  </main>
+
+  <script type="module" src="/js/details.js"></script>
 </body>
 
 </html>

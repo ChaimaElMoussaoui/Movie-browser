@@ -6,23 +6,71 @@ import {
   fetchUpcomingMovies
 } from './api.js';
 
+// Firebase imports voor authentication
+import { auth } from '../auth/firebase-auth.js';
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js";
 
-
-
-
+// Start de app meteen - films laden zonder te wachten op authentication
 async function main() {
-  const trendingMovies = await fetchTrendingMovies();
-  renderCarousel(trendingMovies);
-  setupCarousel(); 
-  initHomepage();
+  try {
+    console.log('Loading homepage content...');
+    
+    const trendingMovies = await fetchTrendingMovies();
+    console.log('Trending movies loaded:', trendingMovies);
+    renderCarousel(trendingMovies);
+    setupCarousel(); 
+    
+    await initHomepage();
+    console.log('Homepage loaded successfully');
+  } catch (error) {
+    console.error('Error loading homepage:', error);
+  }
 }
 
+// Start de app meteen
 main();
 
-async function initHomepage() {
-  const trendingMovies = await fetchTrendingMovies();
-  renderCarousel(trendingMovies);
+// Authentication handler - draait parallel met de app
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    // Gebruiker is ingelogd
+    console.log("Ingelogd als:", user.email);
+    updateNavbar(user);
+  } else {
+    // Niet ingelogd - update navbar maar laat homepage werken
+    updateNavbar(null);
+    
+    // Alleen doorsturen naar login als we op een beveiligde pagina zijn
+    const currentPage = window.location.pathname;
+    if (currentPage.includes('/profile.html') || currentPage.includes('/favorites.html')) {
+      window.location.href = "/views/login.html";
+    }
+  }
+});
 
+// Functie om de navigatie bij te werken gebaseerd op inlog status
+function updateNavbar(user) {
+  const profileArea = document.getElementById('profileArea');
+  const loginLink = document.getElementById('login-link');
+  
+  if (user) {
+    // Gebruiker is ingelogd - toon simpele profiel icoon
+    if (profileArea) {
+      profileArea.innerHTML = `
+        <a href="/views/profile.html">
+          <img src="${user.photoURL || '/assets/default.png'}" alt="Profile" class="profile-pic">
+        </a>
+      `;
+    }
+    if (loginLink) loginLink.style.display = "none";
+  } else {
+    // Gebruiker is niet ingelogd - toon login link
+    if (profileArea) profileArea.innerHTML = "";
+    if (loginLink) loginLink.style.display = "";
+  }
+}
+
+async function initHomepage() {
   const trendingSeries = await fetchTrendingSeries();
   renderSection(trendingSeries, 'Trending Series', '#trending-series');
 
@@ -48,8 +96,8 @@ if (searchForm) {
 
 function setupCarousel() {
   const carousel = document.querySelector('.carousel');
-  const nextBtn = document.querySelector('.next');
-  const prevBtn = document.querySelector('.prev');
+  const nextBtn = document.querySelector('.carousel-btn.next');
+  const prevBtn = document.querySelector('.carousel-btn.prev');
   const scrollAmount = 220;
 
   if (!carousel || !nextBtn || !prevBtn) {

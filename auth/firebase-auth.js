@@ -5,8 +5,9 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
+  signOut
 } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js";
-import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
+import { getFirestore, setDoc, doc, getDoc, updateDoc, arrayUnion, arrayRemove } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -105,45 +106,6 @@ if (logoutLink) {
   });
 }
 
-onAuthStateChanged(auth, async (user) => {
-  const area = document.getElementById('profileArea');
-  if (user) {
-    if (logoutLink) logoutLink.style.display = "";
-    const imgUrl = user.photoURL || '/assets/default.png';
-    if (area) {
-      area.innerHTML = `<img src="${imgUrl}" alt="profile" class="profile-pic">`;
-    }
-
-    const userDoc = await getDoc(doc(db, "users", user.uid));
-    const userData = userDoc.exists() ? userDoc.data() : {};
-    
-
-    const favoriteList = document.getElementById("favoriteList");
-    favoriteList.innerHTML = "";
-    (userData.favorites || []).forEach(fav => {
-      const li = document.createElement("li");
-      li.textContent = fav; 
-      favoriteList.appendChild(li);
-    });
- 
-    const reviewList = document.getElementById("reviewList");
-    reviewList.innerHTML = "";
-    (userData.reviews || []).forEach(review => {
-      const li = document.createElement("li");
-      li.textContent = `${review.movieId}: "${review.reviewText}" (${review.rating}/5)`;
-      reviewList.appendChild(li);
-    });
-  } else {
-    if (area) area.innerHTML = '';
-    if (logoutLink) logoutLink.style.display = "none";
-    window.location.href = "/views/login.html";
-  }
-
-  signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    const user = userCredential.user;
-    window.location.href = "/views/index.html"; // Redirect naar homepage
-  })
-
-});
+// Export auth and db for other modules
+export { auth, db };
 

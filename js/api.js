@@ -53,6 +53,12 @@ export async function fetchMovieReviews(movieId) {
   return fetchFromApi(`/movie/${movieId}/reviews`);
 }
 
+// TV Series Reviews (note: TV shows don't have reviews in TMDB API)
+export async function fetchTVReviews(seriesId) {
+  // TMDB doesn't support TV show reviews, but we'll add this for completeness
+  return [];
+}
+
 // Search for Movies, TV Shows, and People
 export async function fetchMultiSearch(query, page = 1) {
   const endpoint = `/search/multi?query=${encodeURIComponent(query)}&page=${page}&language=nl-NL&include_adult=false`;
