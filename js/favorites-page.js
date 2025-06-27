@@ -36,37 +36,43 @@ function updateNavbar(user) {
       `;
     }
     if (loginLink) loginLink.style.display = "none";
+    //login link gaat weg als je bent ingelogd daarna zie je pf icon
   } else {
+    // als je niet bent ingelogd dan zie je de login link en niks anders 
     if (profileArea) profileArea.innerHTML = "";
     if (loginLink) loginLink.style.display = "";
   }
 }
 
+// Laad favorieten van de gebruiker
 async function loadFavorites(userId) {
-  const loadingMessage = document.getElementById('loading-message');
-  const favoritesContainer = document.getElementById('favorites-container');
-  const noFavoritesMessage = document.getElementById('no-favorites');
+  const loadingMessage = document.getElementById('loading-message');// Laad bericht
+  const favoritesContainer = document.getElementById('favorites-container');// Container voor favorieten
+  const noFavoritesMessage = document.getElementById('no-favorites');// Bericht als er geen favorieten zijn
   
   try {
-    // Haal favorieten op (nu als objecten met meer info)
-    const favorites = await getUserFavorites(userId);
+    // probeer favo op te halen.
+    const favorites = await getUserFavorites(userId); //haal favo op van database
     
+    //geen favo dan krijgt berichten
     if (favorites.length === 0) {
       loadingMessage.style.display = 'none';
       noFavoritesMessage.style.display = 'block';
       return;
     }
     
-    // Render favorieten
-    renderFavorites(favorites);
+    // Als er wel favo zijn 
+    renderFavorites(favorites); //roep functie om favo op pagina te ztten
     loadingMessage.style.display = 'none';
-    favoritesContainer.style.display = 'grid';
+    favoritesContainer.style.display = 'grid'; // favo tonen in grid layout
     
+    //als er fout is en error toont
   } catch (error) {
     console.error('Fout bij laden favorieten:', error);
     loadingMessage.textContent = 'Fout bij laden van favorieten.';
   }
 }
+
 
 function renderFavorites(favorites) {
   const container = document.getElementById('favorites-container');
