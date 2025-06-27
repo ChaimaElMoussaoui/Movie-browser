@@ -1,10 +1,9 @@
 :root {
-
     --bg-color-dark: #121212;
     --text-color-dark: #ffffff;
     --primary-color-dark: #bb86fc;
     --secondary-color-dark: #333333;
-
+    --navbar-text-color-dark: #ffffff;
 
     --bg-color-light: #f8f9fa;
     --text-color-light: #2c3e50;
@@ -12,19 +11,20 @@
     --secondary-color-light: #ffffff; 
     --accent-color-light: #e9ecef;
     --border-color-light: #dee2e6;
+    --navbar-text-color-light: #2c3e50;
   
-
     --bg-color: var(--bg-color-dark);
     --text-color: var(--text-color-dark);
     --primary-color: var(--primary-color-dark);
     --secondary-color: var(--secondary-color-dark);
+    --navbar-text-color: var(--navbar-text-color-dark);
 }
 
 
 
 nav, .navbar {
     background: var(--secondary-color);
-    color: white;
+    color: var(--navbar-text-color);
 }
 
 body.light-mode {
@@ -32,6 +32,7 @@ body.light-mode {
     --text-color: var(--text-color-light);
     --primary-color: var(--primary-color-light);
     --secondary-color: var(--secondary-color-light);
+    --navbar-text-color: var(--navbar-text-color-light);
 }
 
 
@@ -143,7 +144,7 @@ button:active {
 .dark-mode-btn {
   background: none;
   border: none;
-  color: var(--text-color);
+  color: var(--navbar-text-color);
   cursor: pointer;
   padding: 8px;
   border-radius: 50%;
@@ -180,7 +181,7 @@ button:active {
 }
 
 .navbar ul li a {
-    color: white;
+    color: var(--navbar-text-color);
     font-weight: bold;
     padding: 5px 10px;
     border-radius: 5px;
@@ -207,13 +208,14 @@ button:active {
     border: 1px solid var(--primary-color);
     border-radius: 20px;
     background: var(--secondary-color);
-    color: var(--text-color);
+    color: var(--navbar-text-color);
     font-size: 14px;
     transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
 }
 
 #search-input::placeholder {
-    color: #aaa;
+    color: var(--navbar-text-color);
+    opacity: 0.7;
     font-style: italic;
 }
 
