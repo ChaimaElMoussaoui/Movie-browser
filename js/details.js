@@ -273,7 +273,11 @@ async function showReviews(contentId, type = 'movie') {
   `;
 }
 
-// Update favorite button based on user's favorites
+
+
+
+
+//update favo btn gebaseerd op gebruikers favos
 async function updateFavoriteButton(content) {
   const favoriteBtn = document.getElementById('favoriteBtn');
   if (!favoriteBtn || !auth.currentUser) return;
@@ -297,27 +301,31 @@ async function updateFavoriteButton(content) {
   }
 }
 
-// Setup favorite button functionality
+// Instellen van favo knop functionaliteit
 function setupFavoriteButton() {
   const favoriteBtn = document.getElementById('favoriteBtn');
   if (!favoriteBtn) return;
   
   favoriteBtn.addEventListener('click', async () => {
+    // Controleer of gebruiker ingelogd is
     if (!auth.currentUser) {
       alert('Je moet ingelogd zijn om favorieten toe te voegen!');
       window.location.href = '/views/login.html';
       return;
     }
     
+    // Controleer of er content data beschikbaar is
     if (!currentContent) return;
     
     try {
       const contentId = parseInt(currentContent.id);
       const isFavorite = await isMovieFavorite(contentId);
       
+      // Als het al een favo is, verwijder het
       if (isFavorite) {
         await removeUserFavorite(contentId);
       } else {
+        // Anders voeg toe aan favo met film info
         const contentData = {
           title: currentContent.title || currentContent.name,
           poster_path: currentContent.poster_path
@@ -325,11 +333,11 @@ function setupFavoriteButton() {
         await addUserFavorite(contentId, contentData);
       }
       
-      // Update button appearance
+      // Werk de knop weergave bij
       updateFavoriteButton(currentContent);
       
     } catch (error) {
-      console.error('Error toggling favorite:', error);
+      console.error('Fout bij het wijzigen van favoriet:', error);
       alert('Er ging iets fout bij het bijwerken van je favorieten.');
     }
   });

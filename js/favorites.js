@@ -1,16 +1,18 @@
 import { auth, db } from '../auth/firebase-auth.js';
 import { doc, updateDoc, arrayUnion, arrayRemove, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
 
-// Functie om een film toe te voegen aan favorieten
+// Functie om een film toe te voegen aan favo
+//haalt huidig gebruiker op
 export async function addUserFavorite(movieId, movieData = {}) {
   const user = auth.currentUser;
-  if (!user) throw new Error("Niet ingelogd!");
+  if (!user) throw new Error("Niet ingelogd!");//gooi fout als er geen gebrruiker is ingelogd
   
-  const userRef = doc(db, "users", user.uid);
+  const userRef = doc(db, "users", user.uid);//maak refrentie naar firestore docu van gebruiker
   
+
   try {
     // Eerst checken of gebruiker document bestaat
-    const userDoc = await getDoc(userRef);
+    const userDoc = await getDoc(userRef);//docu ophalen van 
     
     const favoriteItem = {
       id: movieId,
