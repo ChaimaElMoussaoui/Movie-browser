@@ -277,7 +277,7 @@ async function showReviews(contentId, type = 'movie') {
 
 
 
-//update favo btn gebaseerd op gebruikers favos
+//update favo btn gebaseerd op gebruikers favo's
 async function updateFavoriteButton(content) {
   const favoriteBtn = document.getElementById('favoriteBtn');
   if (!favoriteBtn || !auth.currentUser) return;
